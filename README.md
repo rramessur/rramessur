@@ -1,4 +1,4 @@
-## Hi there 👋
+## Hi there 👋 I'm a Corneal Ophthalmologist with an interest in Clinical Informatics and AI. I am currently working on uncertainty estimation in Vision Language Models. 
 
 <!--
 **rramessur/rramessur** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
