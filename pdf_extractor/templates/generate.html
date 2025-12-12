@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Generator | AntiGravity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <h1>PDF Chaos Generator</h1>
+            <p>Merge, randomize, and generate test data with ease.</p>
+        </header>
+
+        <nav class="main-nav">
+            <a href="/" class="nav-link">Extractor</a>
+            <a href="/generate-page" class="nav-link active">Generator</a>
+            <a href="/direct-fill-page" class="nav-link">Direct Fill</a>
+        </nav>
+
+        <main>
+            <section class="card upload-card">
+                <h2>Generate Patient Forms</h2>
+                <p class="subtext">Upload your source files to generate filled PDF forms.</p>
+
+                <form id="generateForm" action="/generate" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="demographics" class="file-label">
+                            <span class="step-badge">1</span>
+                            <div class="label-text">
+                                <strong>Demographics CSV</strong>
+                                <span class="file-name" id="demo-name">No file chosen</span>
+                            </div>
+                            <input type="file" id="demographics" name="demographics" accept=".csv" required>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clinical" class="file-label">
+                            <span class="step-badge">2</span>
+                            <div class="label-text">
+                                <strong>Clinical Details CSV</strong>
+                                <span class="file-name" id="clinical-name">No file chosen</span>
+                            </div>
+                            <input type="file" id="clinical" name="clinical" accept=".csv" required>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="template" class="file-label">
+                            <span class="step-badge">3</span>
+                            <div class="label-text">
+                                <strong>Template PDF</strong>
+                                <span class="file-name" id="template-name">No file chosen</span>
+                            </div>
+                            <input type="file" id="template" name="template" accept=".pdf" required>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="cta-button" id="generateBtn">
+                        <span class="btn-text">Generate & Download ZIP</span>
+                        <div class="loader hidden"></div>
+                    </button>
+
+                    <div id="statusMessage" class="status-message hidden"></div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 AntiGravity Systems</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Simple inline script to handle file name updates if specific logic needed, 
+        // but can be unified in main script.js
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+TY  - JOUR
+TI  - HoloCine: Holistic Generation of Cinematic Multi-Shot Long Video Narratives
+AU  - Yihao Meng
+AU  - Hao Ouyang
+AU  - Yue Yu
+AU  - Qiuyu Wang
+AU  - Wen Wang
+AU  - Ka Leong Cheng
+AU  - Hanlin Wang
+AU  - Yixuan Li
+AU  - Cheng Chen
+AU  - Yanhong Zeng
+AU  - Yujun Shen
+AU  - Huamin Qu
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20822v1
+UR  - http://arxiv.org/abs/2510.20822v1
+AB  - State-of-the-art text-to-video models excel at generating isolated clips but fall short of creating the coherent, multi-shot narratives, which are the essence of storytelling. We bridge this "narrative gap" with HoloCine, a model that generates entire scenes holistically to ensure global consistency from the first shot to the last. Our architecture achieves precise directorial control through a Window Cross-Attention mechanism that localizes text prompts to specific shots, while a Sparse Inter-Shot Self-Attention pattern (dense within shots but sparse between them) ensures the efficiency required for minute-scale generation. Beyond setting a new state-of-the-art in narrative coherence, HoloCine develops remarkable emergent abilities: a persistent memory for characters and scenes, and an intuitive grasp of cinematic techniques. Our work marks a pivotal shift from clip synthesis towards automated filmmaking, making end-to-end cinematic creation a tangible future. Our code is available at: https://holo-cine.github.io/.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Efficient analytic approximation for small-scale non-cold relic perturbations
+AU  - Nanoom Lee
+AU  - Yacine Ali-Haïmoud
+AU  - Marc Kamionkowski
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20821v1
+UR  - http://arxiv.org/abs/2510.20821v1
+AB  - We develop a highly accurate analytic approximation for small-scale non-cold relic perturbations by solving the collisionless Boltzmann equation in the quasi-stationary regime. The approximation is implemented in CLASSIER (CLASS Integral Equation Revision), a modified version of the Boltzmann solver CLASS that replaces the traditional truncated Boltzmann hierarchy of non cold relic multipoles with a small set of integral equations solved iteratively. Applying it to massive neutrinos yields a factor-of-two reduction in total runtime relative to CLASSIER without the approximation. Compared to standard CLASS runs (with $\ell_{\rm max}^{\rm NCDM}=40$ and no late-time massive neutrino fluid approximation) under the same precision setting, CLASSIER with this approximation is faster by a factor of 3-6. The approximation faithfully reproduces the late-time behavior of massive neutrino perturbations and preserves sub-$0.1\%$ accuracy in the matter power spectrum today up to comoving wavenumber $k=100\,{\rm Mpc}^{-1}$. With this approximation, massive-neutrino perturbations are no longer the computational bottleneck on small scales for linear-theory predictions. The approach can be readily extendable to non-standard dark-matter models, and offers prospects for further efficiency gains in high-precision cosmological analyses.
+KW  - astro-ph.CO
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - LayerComposer: Interactive Personalized T2I via Spatially-Aware Layered Canvas
+AU  - Guocheng Gordon Qian
+AU  - Ruihang Zhang
+AU  - Tsai-Shien Chen
+AU  - Yusuf Dalva
+AU  - Anujraaj Argo Goyal
+AU  - Willi Menapace
+AU  - Ivan Skorokhodov
+AU  - Meng Dong
+AU  - Arpit Sahni
+AU  - Daniil Ostashev
+AU  - Ju Hu
+AU  - Sergey Tulyakov
+AU  - Kuan-Chieh Jackson Wang
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20820v1
+UR  - http://arxiv.org/abs/2510.20820v1
+AB  - Despite their impressive visual fidelity, existing personalized generative models lack interactive control over spatial composition and scale poorly to multiple subjects. To address these limitations, we present LayerComposer, an interactive framework for personalized, multi-subject text-to-image generation. Our approach introduces two main contributions: (1) a layered canvas, a novel representation in which each subject is placed on a distinct layer, enabling occlusion-free composition; and (2) a locking mechanism that preserves selected layers with high fidelity while allowing the remaining layers to adapt flexibly to the surrounding context. Similar to professional image-editing software, the proposed layered canvas allows users to place, resize, or lock input subjects through intuitive layer manipulation. Our versatile locking mechanism requires no architectural changes, relying instead on inherent positional embeddings combined with a new complementary data sampling strategy. Extensive experiments demonstrate that LayerComposer achieves superior spatial control and identity preservation compared to the state-of-the-art methods in multi-subject personalized image generation.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Towards General Modality Translation with Contrastive and Predictive Latent Diffusion Bridge
+AU  - Nimrod Berman
+AU  - Omkar Joglekar
+AU  - Eitan Kosman
+AU  - Dotan Di Castro
+AU  - Omri Azencot
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20819v1
+UR  - http://arxiv.org/abs/2510.20819v1
+AB  - Recent advances in generative modeling have positioned diffusion models as state-of-the-art tools for sampling from complex data distributions. While these models have shown remarkable success across single-modality domains such as images and audio, extending their capabilities to Modality Translation (MT), translating information across different sensory modalities, remains an open challenge. Existing approaches often rely on restrictive assumptions, including shared dimensionality, Gaussian source priors, and modality-specific architectures, which limit their generality and theoretical grounding. In this work, we propose the Latent Denoising Diffusion Bridge Model (LDDBM), a general-purpose framework for modality translation based on a latent-variable extension of Denoising Diffusion Bridge Models. By operating in a shared latent space, our method learns a bridge between arbitrary modalities without requiring aligned dimensions. We introduce a contrastive alignment loss to enforce semantic consistency between paired samples and design a domain-agnostic encoder-decoder architecture tailored for noise prediction in latent space. Additionally, we propose a predictive loss to guide training toward accurate cross-domain translation and explore several training strategies to improve stability. Our approach supports arbitrary modality pairs and performs strongly on diverse MT tasks, including multi-view to 3D shape generation, image super-resolution, and multi-view scene synthesis. Comprehensive experiments and ablations validate the effectiveness of our framework, establishing a new strong baseline in general modality translation. For more information, see our project page: https://sites.google.com/view/lddbm/home.
+KW  - cs.CV
+KW  - cs.AI
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - GSWorld: Closed-Loop Photo-Realistic Simulation Suite for Robotic Manipulation
+AU  - Guangqi Jiang
+AU  - Haoran Chang
+AU  - Ri-Zhao Qiu
+AU  - Yutong Liang
+AU  - Mazeyu Ji
+AU  - Jiyue Zhu
+AU  - Zhao Dong
+AU  - Xueyan Zou
+AU  - Xiaolong Wang
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20813v1
+UR  - http://arxiv.org/abs/2510.20813v1
+AB  - This paper presents GSWorld, a robust, photo-realistic simulator for robotics manipulation that combines 3D Gaussian Splatting with physics engines. Our framework advocates "closing the loop" of developing manipulation policies with reproducible evaluation of policies learned from real-robot data and sim2real policy training without using real robots. To enable photo-realistic rendering of diverse scenes, we propose a new asset format, which we term GSDF (Gaussian Scene Description File), that infuses Gaussian-on-Mesh representation with robot URDF and other objects. With a streamlined reconstruction pipeline, we curate a database of GSDF that contains 3 robot embodiments for single-arm and bimanual manipulation, as well as more than 40 objects. Combining GSDF with physics engines, we demonstrate several immediate interesting applications: (1) learning zero-shot sim2real pixel-to-action manipulation policy with photo-realistic rendering, (2) automated high-quality DAgger data collection for adapting policies to deployment environments, (3) reproducible benchmarking of real-robot manipulation policies in simulation, (4) simulation data collection by virtual teleoperation, and (5) zero-shot sim2real visual reinforcement learning. Website: https://3dgsworld.github.io/.
+KW  - cs.RO
+KW  - cs.AI
+KW  - cs.CV
+LA  - en
+ER  - 

@@ -1,0 +1,896 @@
+TY  - JOUR
+TI  - Systematic Evaluation of Uncertainty Estimation Methods in Large Language Models
+AU  - Christian Hobelsberger
+AU  - Theresa Winner
+AU  - Andreas Nawroth
+AU  - Oliver Mitevski
+AU  - Anna-Carolina Haensch
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20460v1
+UR  - http://arxiv.org/abs/2510.20460v1
+AB  - Large language models (LLMs) produce outputs with varying levels of uncertainty, and, just as often, varying levels of correctness; making their practical reliability far from guaranteed. To quantify this uncertainty, we systematically evaluate four approaches for confidence estimation in LLM outputs: VCE, MSP, Sample Consistency, and CoCoA (Vashurin et al., 2025). For the evaluation of the approaches, we conduct experiments on four question-answering tasks using a state-of-the-art open-source LLM. Our results show that each uncertainty metric captures a different facet of model confidence and that the hybrid CoCoA approach yields the best reliability overall, improving both calibration and discrimination of correct answers. We discuss the trade-offs of each method and provide recommendations for selecting uncertainty measures in LLM applications.
+KW  - cs.CL
+KW  - stat.AP
+KW  - stat.ME
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Dino-Diffusion Modular Designs Bridge the Cross-Domain Gap in Autonomous Parking
+AU  - Zixuan Wu
+AU  - Hengyuan Zhang
+AU  - Ting-Hsuan Chen
+AU  - Yuliang Guo
+AU  - David Paz
+AU  - Xinyu Huang
+AU  - Liu Ren
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20335v1
+UR  - http://arxiv.org/abs/2510.20335v1
+AB  - Parking is a critical pillar of driving safety. While recent end-to-end (E2E) approaches have achieved promising in-domain results, robustness under domain shifts (e.g., weather and lighting changes) remains a key challenge. Rather than relying on additional data, in this paper, we propose Dino-Diffusion Parking (DDP), a domain-agnostic autonomous parking pipeline that integrates visual foundation models with diffusion-based planning to enable generalized perception and robust motion planning under distribution shifts. We train our pipeline in CARLA at regular setting and transfer it to more adversarial settings in a zero-shot fashion. Our model consistently achieves a parking success rate above 90% across all tested out-of-distribution (OOD) scenarios, with ablation studies confirming that both the network architecture and algorithmic design significantly enhance cross-domain performance over existing baselines. Furthermore, testing in a 3D Gaussian splatting (3DGS) environment reconstructed from a real-world parking lot demonstrates promising sim-to-real transfer.
+KW  - cs.RO
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - TOMCAT: Test-time Comprehensive Knowledge Accumulation for Compositional Zero-Shot Learning
+AU  - Xudong Yan
+AU  - Songhe Feng
+PY  - 2025
+Y1  - 2025/10/23
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.20162v1
+UR  - http://arxiv.org/abs/2510.20162v1
+AB  - Compositional Zero-Shot Learning (CZSL) aims to recognize novel attribute-object compositions based on the knowledge learned from seen ones. Existing methods suffer from performance degradation caused by the distribution shift of label space at test time, which stems from the inclusion of unseen compositions recombined from attributes and objects. To overcome the challenge, we propose a novel approach that accumulates comprehensive knowledge in both textual and visual modalities from unsupervised data to update multimodal prototypes at test time. Building on this, we further design an adaptive update weight to control the degree of prototype adjustment, enabling the model to flexibly adapt to distribution shift during testing. Moreover, a dynamic priority queue is introduced that stores high-confidence images to acquire visual knowledge from historical images for inference. Considering the semantic consistency of multimodal knowledge, we align textual and visual prototypes by multimodal collaborative representation learning. Extensive experiments indicate that our approach achieves state-of-the-art performance on four benchmark datasets under both closed-world and open-world settings. Code will be available at https://github.com/xud-yan/TOMCAT .
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Class-Aware Prototype Learning with Negative Contrast for Test-Time Adaptation of Vision-Language Models
+AU  - Xiaozhen Qiao
+AU  - Jingkai Zhao
+AU  - Yuqiu Jiang
+AU  - Xianda Guo
+AU  - Zhe Sun
+AU  - Hongyuan Zhang
+AU  - Xuelong Li
+PY  - 2025
+Y1  - 2025/10/22
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.19802v1
+UR  - http://arxiv.org/abs/2510.19802v1
+AB  - Vision-Language Models (VLMs) demonstrate impressive zero-shot generalization through large-scale image-text pretraining, yet their performance can drop once the deployment distribution diverges from the training distribution. To address this, Test-Time Adaptation (TTA) methods update models using unlabeled target data. However, existing approaches often ignore two key challenges: prototype degradation in long-tailed distributions and confusion between semantically similar classes. To tackle these issues, we propose \textbf{C}lass-Aware \textbf{P}rototype \textbf{L}earning with \textbf{N}egative \textbf{C}ontrast(\textbf{CPL-NC}), a lightweight TTA framework designed specifically for VLMs to enhance generalization under distribution shifts. CPL-NC introduces a \textit{Class-Aware Prototype Cache} Module that dynamically adjusts per-class capacity based on test-time frequency and activation history, with a rejuvenation mechanism for inactive classes to retain rare-category knowledge. Additionally, a \textit{Negative Contrastive Learning} Mechanism identifies and constrains hard visual-textual negatives to improve class separability. The framework employs asymmetric optimization, refining only textual prototypes while anchoring on stable visual features. Experiments on 15 benchmarks show that CPL-NC consistently outperforms prior TTA methods across both ResNet-50 and ViT-B/16 backbones.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Adaptive Distribution-aware Quantization for Mixed-Precision Neural Networks
+AU  - Shaohang Jia
+AU  - Zhiyong Huang
+AU  - Zhi Yu
+AU  - Mingyang Hou
+AU  - Shuai Miao
+AU  - Han Yang
+PY  - 2025
+Y1  - 2025/10/22
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.19760v1
+UR  - http://arxiv.org/abs/2510.19760v1
+AB  - Quantization-Aware Training (QAT) is a critical technique for deploying deep neural networks on resource-constrained devices. However, existing methods often face two major challenges: the highly non-uniform distribution of activations and the static, mismatched codebooks used in weight quantization. To address these challenges, we propose Adaptive Distribution-aware Quantization (ADQ), a mixed-precision quantization framework that employs a differentiated strategy. The core of ADQ is a novel adaptive weight quantization scheme comprising three key innovations: (1) a quantile-based initialization method that constructs a codebook closely aligned with the initial weight distribution; (2) an online codebook adaptation mechanism based on Exponential Moving Average (EMA) to dynamically track distributional shifts; and (3) a sensitivity-informed strategy for mixed-precision allocation. For activations, we integrate a hardware-friendly non-uniform-to-uniform mapping scheme. Comprehensive experiments validate the effectiveness of our method. On ImageNet, ADQ enables a ResNet-18 to achieve 71.512% Top-1 accuracy with an average bit-width of only 2.81 bits, outperforming state-of-the-art methods under comparable conditions. Furthermore, detailed ablation studies on CIFAR-10 systematically demonstrate the individual contributions of each innovative component, validating the rationale and effectiveness of our design.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - The Intricate Dance of Prompt Complexity, Quality, Diversity, and Consistency in T2I Models
+AU  - Xiaofeng Zhang
+AU  - Aaron Courville
+AU  - Michal Drozdzal
+AU  - Adriana Romero-Soriano
+PY  - 2025
+Y1  - 2025/10/22
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.19557v1
+UR  - http://arxiv.org/abs/2510.19557v1
+AB  - Text-to-image (T2I) models offer great potential for creating virtually limitless synthetic data, a valuable resource compared to fixed and finite real datasets. Previous works evaluate the utility of synthetic data from T2I models on three key desiderata: quality, diversity, and consistency. While prompt engineering is the primary means of interacting with T2I models, the systematic impact of prompt complexity on these critical utility axes remains underexplored. In this paper, we first conduct synthetic experiments to motivate the difficulty of generalization w.r.t. prompt complexity and explain the observed difficulty with theoretical derivations. Then, we introduce a new evaluation framework that can compare the utility of real data and synthetic data, and present a comprehensive analysis of how prompt complexity influences the utility of synthetic data generated by commonly used T2I models. We conduct our study across diverse datasets, including CC12M, ImageNet-1k, and DCI, and evaluate different inference-time intervention methods. Our synthetic experiments show that generalizing to more general conditions is harder than the other way round, since the former needs an estimated likelihood that is not learned by diffusion models. Our large-scale empirical experiments reveal that increasing prompt complexity results in lower conditional diversity and prompt consistency, while reducing the synthetic-to-real distribution shift, which aligns with the synthetic experiments. Moreover, current inference-time interventions can augment the diversity of the generations at the expense of moving outside the support of real data. Among those interventions, prompt expansion, by deliberately using a pre-trained language model as a likelihood estimator, consistently achieves the highest performance in both image diversity and aesthetics, even higher than that of real data.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Training-Free Spectral Fingerprints of Voice Processing in Transformers
+AU  - Valentin Noël
+PY  - 2025
+Y1  - 2025/10/21
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.19131v1
+UR  - http://arxiv.org/abs/2510.19131v1
+AB  - Different transformer architectures implement identical linguistic computations via distinct connectivity patterns, yielding model imprinted ``computational fingerprints'' detectable through spectral analysis. Using graph signal processing on attention induced token graphs, we track changes in algebraic connectivity (Fiedler value, $\Delta\lambda_2$) under voice alternation across 20 languages and three model families, with a prespecified early window (layers 2--5). Our analysis uncovers clear architectural signatures: Phi-3-Mini shows a dramatic English specific early layer disruption ($\overline{\Delta\lambda_2}_{[2,5]}\!\approx\!-0.446$) while effects in 19 other languages are minimal, consistent with public documentation that positions the model primarily for English use. Qwen2.5-7B displays small, distributed shifts that are largest for morphologically rich languages, and LLaMA-3.2-1B exhibits systematic but muted responses. These spectral signatures correlate strongly with behavioral differences (Phi-3: $r=-0.976$) and are modulated by targeted attention head ablations, linking the effect to early attention structure and confirming functional relevance. Taken together, the findings are consistent with the view that training emphasis can leave detectable computational imprints: specialized processing strategies that manifest as measurable connectivity patterns during syntactic transformations. Beyond voice alternation, the framework differentiates reasoning modes, indicating utility as a simple, training free diagnostic for revealing architectural biases and supporting model reliability analysis.
+KW  - cs.CL
+KW  - cs.LG
+KW  - eess.SP
+KW  - stat.ML
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Vision Foundation Models Can Be Good Tokenizers for Latent Diffusion Models
+AU  - Tianci Bi
+AU  - Xiaoyi Zhang
+AU  - Yan Lu
+AU  - Nanning Zheng
+PY  - 2025
+Y1  - 2025/10/21
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.18457v1
+UR  - http://arxiv.org/abs/2510.18457v1
+AB  - The performance of Latent Diffusion Models (LDMs) is critically dependent on the quality of their visual tokenizer. While recent works have explored incorporating Vision Foundation Models (VFMs) via distillation, we identify a fundamental flaw in this approach: it inevitably weakens the robustness of alignment with the original VFM, causing the aligned latents to deviate semantically under distribution shifts. In this paper, we bypass distillation by proposing a more direct approach: Vision Foundation Model Variational Autoencoder (VFM-VAE). To resolve the inherent tension between the VFM's semantic focus and the need for pixel-level fidelity, we redesign the VFM-VAE decoder with Multi-Scale Latent Fusion and Progressive Resolution Reconstruction blocks, enabling high-quality reconstruction from spatially coarse VFM features. Furthermore, we provide a comprehensive analysis of representation dynamics during diffusion training, introducing the proposed SE-CKNNA metric as a more precise tool for this diagnosis. This analysis allows us to develop a joint tokenizer-diffusion alignment strategy that dramatically accelerates convergence. Our innovations in tokenizer design and training strategy lead to superior performance and efficiency: our system reaches a gFID (w/o CFG) of 2.20 in merely 80 epochs (a 10x speedup over prior tokenizers). With continued training to 640 epochs, it further attains a gFID (w/o CFG) of 1.62, establishing direct VFM integration as a superior paradigm for LDMs.
+KW  - cs.CV
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Ensembling Pruned Attention Heads For Uncertainty-Aware Efficient Transformers
+AU  - Firas Gabetni
+AU  - Giuseppe Curci
+AU  - Andrea Pilzer
+AU  - Subhankar Roy
+AU  - Elisa Ricci
+AU  - Gianni Franchi
+PY  - 2025
+Y1  - 2025/10/21
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.18358v1
+UR  - http://arxiv.org/abs/2510.18358v1
+AB  - Uncertainty quantification (UQ) is essential for deploying deep neural networks in safety-critical settings. Although methods like Deep Ensembles achieve strong UQ performance, their high computational and memory costs hinder scalability to large models. We introduce Hydra Ensembles, an efficient transformer-based ensemble that prunes attention heads to create diverse members and merges them via a new multi-head attention with grouped fully-connected layers. This yields a compact model with inference speed close to a single network, matching or surpassing Deep Ensembles in UQ performance without retraining from scratch. We also provide an in-depth analysis of pruning, showing that naive approaches can harm calibration, whereas Hydra Ensembles preserves robust uncertainty. Experiments on image and text classification tasks, with various architectures, show consistent gains over Deep Ensembles. Remarkably, in zero-shot classification on ImageNet-1k, our approach surpasses state of the art methods, even without requiring additional training.
+KW  - cs.LG
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - LILO: Bayesian Optimization with Interactive Natural Language Feedback
+AU  - Katarzyna Kobalczyk
+AU  - Zhiyuan Jerry Lin
+AU  - Benjamin Letham
+AU  - Zhuokai Zhao
+AU  - Maximilian Balandat
+AU  - Eytan Bakshy
+PY  - 2025
+Y1  - 2025/10/20
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.17671v1
+UR  - http://arxiv.org/abs/2510.17671v1
+AB  - For many real-world applications, feedback is essential in translating complex, nuanced, or subjective goals into quantifiable optimization objectives. We propose a language-in-the-loop framework that uses a large language model (LLM) to convert unstructured feedback in the form of natural language into scalar utilities to conduct BO over a numeric search space. Unlike preferential BO, which only accepts restricted feedback formats and requires customized models for each domain-specific problem, our approach leverages LLMs to turn varied types of textual feedback into consistent utility signals and to easily include flexible user priors without manual kernel design. At the same time, our method maintains the sample efficiency and principled uncertainty quantification of BO. We show that this hybrid method not only provides a more natural interface to the decision maker but also outperforms conventional BO baselines and LLM-only optimizers, particularly in feedback-limited regimes.
+KW  - cs.LG
+KW  - cs.AI
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - From Preferences to Prejudice: The Role of Alignment Tuning in Shaping Social Bias in Video Diffusion Models
+AU  - Zefan Cai
+AU  - Haoyi Qiu
+AU  - Haozhe Zhao
+AU  - Ke Wan
+AU  - Jiachen Li
+AU  - Jiuxiang Gu
+AU  - Wen Xiao
+AU  - Nanyun Peng
+AU  - Junjie Hu
+PY  - 2025
+Y1  - 2025/10/20
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.17247v1
+UR  - http://arxiv.org/abs/2510.17247v1
+AB  - Recent advances in video diffusion models have significantly enhanced text-to-video generation, particularly through alignment tuning using reward models trained on human preferences. While these methods improve visual quality, they can unintentionally encode and amplify social biases. To systematically trace how such biases evolve throughout the alignment pipeline, we introduce VideoBiasEval, a comprehensive diagnostic framework for evaluating social representation in video generation. Grounded in established social bias taxonomies, VideoBiasEval employs an event-based prompting strategy to disentangle semantic content (actions and contexts) from actor attributes (gender and ethnicity). It further introduces multi-granular metrics to evaluate (1) overall ethnicity bias, (2) gender bias conditioned on ethnicity, (3) distributional shifts in social attributes across model variants, and (4) the temporal persistence of bias within videos. Using this framework, we conduct the first end-to-end analysis connecting biases in human preference datasets, their amplification in reward models, and their propagation through alignment-tuned video diffusion models. Our results reveal that alignment tuning not only strengthens representational biases but also makes them temporally stable, producing smoother yet more stereotyped portrayals. These findings highlight the need for bias-aware evaluation and mitigation throughout the alignment process to ensure fair and socially responsible video generation.
+KW  - cs.CL
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - HIDISC: A Hyperbolic Framework for Domain Generalization with Generalized Category Discovery
+AU  - Vaibhav Rathore
+AU  - Divyam Gupta
+AU  - Biplab Banerjee
+PY  - 2025
+Y1  - 2025/10/20
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.17188v1
+UR  - http://arxiv.org/abs/2510.17188v1
+AB  - Generalized Category Discovery (GCD) aims to classify test-time samples into either seen categories** -- available during training -- or novel ones, without relying on label supervision. Most existing GCD methods assume simultaneous access to labeled and unlabeled data during training and arising from the same domain, limiting applicability in open-world scenarios involving distribution shifts. Domain Generalization with GCD (DG-GCD) lifts this constraint by requiring models to generalize to unseen domains containing novel categories, without accessing targetdomain data during training. The only prior DG-GCD method, DG2CD-Net, relies on episodic training with multiple synthetic domains and task vector aggregation, incurring high computational cost and error accumulation. We propose HIDISC, a hyperbolic representation learning framework that achieves domain and category-level generalization without episodic simulation. To expose the model to minimal but diverse domain variations, we augment the source domain using GPT-guided diffusion, avoiding overfitting while maintaining efficiency. To structure the representation space, we introduce Tangent CutMix, a curvature-aware interpolation that synthesizes pseudo-novel samples in tangent space, preserving manifold consistency. A unified loss -- combining penalized Busemann alignment, hybrid hyperbolic contrastive regularization, and adaptive outlier repulsion -- **facilitates compact, semantically structured embeddings. A learnable curvature parameter further adapts the geometry to dataset complexity. HIDISC achieves state-of-the-art results on PACS , Office-Home , and DomainNet, consistently outperforming the existing Euclidean and hyperbolic (DG)-GCD baselines.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Connecting Domains and Contrasting Samples: A Ladder for Domain Generalization
+AU  - Tianxin Wei
+AU  - Yifan Chen
+AU  - Xinrui He
+AU  - Wenxuan Bao
+AU  - Jingrui He
+PY  - 2025
+Y1  - 2025/10/19
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.16704v1
+UR  - http://arxiv.org/abs/2510.16704v1
+DO  - 10.1145/3690624.3709280
+AB  - Distribution shifts between training and testing samples frequently occur in practice and impede model generalization performance. This crucial challenge thereby motivates studies on domain generalization (DG), which aim to predict the label on unseen target domain data by solely using data from source domains. It is intuitive to conceive the class-separated representations learned in contrastive learning (CL) are able to improve DG, while the reality is quite the opposite: users observe directly applying CL deteriorates the performance. We analyze the phenomenon with the insights from CL theory and discover lack of intra-class connectivity in the DG setting causes the deficiency. We thus propose a new paradigm, domain-connecting contrastive learning (DCCL), to enhance the conceptual connectivity across domains and obtain generalizable representations for DG. On the data side, more aggressive data augmentation and cross-domain positive samples are introduced to improve intra-class connectivity. On the model side, to better embed the unseen test domains, we propose model anchoring to exploit the intra-class connectivity in pre-trained representations and complement the anchoring with generative transformation loss. Extensive experiments on five standard DG benchmarks are performed. The results verify that DCCL outperforms state-of-the-art baselines even without domain supervision. The detailed model implementation and the code are provided through https://github.com/weitianxin/DCCL
+KW  - cs.CV
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety
+AU  - Vamshi Krishna Bonagiri
+AU  - Ponnurangam Kumaragurum
+AU  - Khanh Nguyen
+AU  - Benjamin Plaut
+PY  - 2025
+Y1  - 2025/10/18
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.16492v1
+UR  - http://arxiv.org/abs/2510.16492v1
+AB  - As Large Language Model (LLM) agents increasingly operate in complex environments with real-world consequences, their safety becomes critical. While uncertainty quantification is well-studied for single-turn tasks, multi-turn agentic scenarios with real-world tool access present unique challenges where uncertainties and ambiguities compound, leading to severe or catastrophic risks beyond traditional text generation failures. We propose using "quitting" as a simple yet effective behavioral mechanism for LLM agents to recognize and withdraw from situations where they lack confidence. Leveraging the ToolEmu framework, we conduct a systematic evaluation of quitting behavior across 12 state-of-the-art LLMs. Our results demonstrate a highly favorable safety-helpfulness trade-off: agents prompted to quit with explicit instructions improve safety by an average of +0.39 on a 0-3 scale across all models (+0.64 for proprietary models), while maintaining a negligible average decrease of -0.03 in helpfulness. Our analysis demonstrates that simply adding explicit quit instructions proves to be a highly effective safety mechanism that can immediately be deployed in existing agent systems, and establishes quitting as an effective first-line defense mechanism for autonomous agents in high-stakes applications.
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Automated C-Arm Positioning via Conformal Landmark Localization
+AU  - Ahmad Arrabi
+AU  - Jay Hwasung Jung
+AU  - Jax Luo
+AU  - Nathan Franssen
+AU  - Scott Raymond
+AU  - Safwan Wshah
+PY  - 2025
+Y1  - 2025/10/17
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.16160v1
+UR  - http://arxiv.org/abs/2510.16160v1
+AB  - Accurate and reliable C-arm positioning is essential for fluoroscopy-guided interventions. However, clinical workflows rely on manual alignment that increases radiation exposure and procedural delays. In this work, we present a pipeline that autonomously navigates the C-arm to predefined anatomical landmarks utilizing X-ray images. Given an input X-ray image from an arbitrary starting location on the operating table, the model predicts a 3D displacement vector toward each target landmark along the body. To ensure reliable deployment, we capture both aleatoric and epistemic uncertainties in the model's predictions and further calibrate them using conformal prediction. The derived prediction regions are interpreted as 3D confidence regions around the predicted landmark locations. The training framework combines a probabilistic loss with skeletal pose regularization to encourage anatomically plausible outputs. We validate our approach on a synthetic X-ray dataset generated from DeepDRR. Results show not only strong localization accuracy across multiple architectures but also well-calibrated prediction bounds. These findings highlight the pipeline's potential as a component in safe and reliable autonomous C-arm systems. Code is available at https://github.com/AhmadArrabi/C_arm_guidance_APAH
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - ObjectTransforms for Uncertainty Quantification and Reduction in Vision-Based Perception for Autonomous Vehicles
+AU  - Nishad Sahu
+AU  - Shounak Sural
+AU  - Aditya Satish Patil
+AU  - Ragunathan
+AU  - Rajkumar
+PY  - 2025
+Y1  - 2025/10/17
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.16118v1
+UR  - http://arxiv.org/abs/2510.16118v1
+AB  - Reliable perception is fundamental for safety critical decision making in autonomous driving. Yet, vision based object detector neural networks remain vulnerable to uncertainty arising from issues such as data bias and distributional shifts. In this paper, we introduce ObjectTransforms, a technique for quantifying and reducing uncertainty in vision based object detection through object specific transformations at both training and inference times. At training time, ObjectTransforms perform color space perturbations on individual objects, improving robustness to lighting and color variations. ObjectTransforms also uses diffusion models to generate realistic, diverse pedestrian instances. At inference time, object perturbations are applied to detected objects and the variance of detection scores are used to quantify predictive uncertainty in real time. This uncertainty signal is then used to filter out false positives and also recover false negatives, improving the overall precision recall curve. Experiments with YOLOv8 on the NuImages 10K dataset demonstrate that our method yields notable accuracy improvements and uncertainty reduction across all object classes during training, while predicting desirably higher uncertainty values for false positives as compared to true positives during inference. Our results highlight the potential of ObjectTransforms as a lightweight yet effective mechanism for reducing and quantifying uncertainty in vision-based perception during training and inference respectively.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Uncertainty-Aware Extreme Point Tracing for Weakly Supervised Ultrasound Image Segmentation
+AU  - Lei Shi
+AU  - Gang Li
+AU  - Junxing Zhang
+PY  - 2025
+Y1  - 2025/10/17
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.15666v1
+UR  - http://arxiv.org/abs/2510.15666v1
+AB  - Automatic medical image segmentation is a fundamental step in computer-aided diagnosis, yet fully supervised approaches demand extensive pixel-level annotations that are costly and time-consuming. To alleviate this burden, we propose a weakly supervised segmentation framework that leverages only four extreme points as annotation. Specifically, bounding boxes derived from the extreme points are used as prompts for the Segment Anything Model 2 (SAM2) to generate reliable initial pseudo labels. These pseudo labels are progressively refined by an enhanced Feature-Guided Extreme Point Masking (FGEPM) algorithm, which incorporates Monte Carlo dropout-based uncertainty estimation to construct a unified gradient uncertainty cost map for boundary tracing. Furthermore, a dual-branch Uncertainty-aware Scale Consistency (USC) loss and a box alignment loss are introduced to ensure spatial consistency and precise boundary alignment during training. Extensive experiments on two public ultrasound datasets, BUSI and UNS, demonstrate that our method achieves performance comparable to, and even surpassing fully supervised counterparts while significantly reducing annotation cost. These results validate the effectiveness and practicality of the proposed weakly supervised framework for ultrasound image segmentation.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - MCA: Modality Composition Awareness for Robust Composed Multimodal Retrieval
+AU  - Qiyu Wu
+AU  - Shuyang Cui
+AU  - Satoshi Hayakawa
+AU  - Wei-Yao Wang
+AU  - Hiromi Wakaki
+AU  - Yuki Mitsufuji
+PY  - 2025
+Y1  - 2025/10/17
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.15543v1
+UR  - http://arxiv.org/abs/2510.15543v1
+AB  - Multimodal retrieval, which seeks to retrieve relevant content across modalities such as text or image, supports applications from AI search to contents production. Despite the success of separate-encoder approaches like CLIP align modality-specific embeddings with contrastive learning, recent multimodal large language models (MLLMs) enable a unified encoder that directly processes composed inputs. While flexible and advanced, we identify that unified encoders trained with conventional contrastive learning are prone to learn modality shortcut, leading to poor robustness under distribution shifts. We propose a modality composition awareness framework to mitigate this issue. Concretely, a preference loss enforces multimodal embeddings to outperform their unimodal counterparts, while a composition regularization objective aligns multimodal embeddings with prototypes composed from its unimodal parts. These objectives explicitly model structural relationships between the composed representation and its unimodal counterparts. Experiments on various benchmarks show gains in out-of-distribution retrieval, highlighting modality composition awareness as a effective principle for robust composed multimodal retrieval when utilizing MLLMs as the unified encoder.
+KW  - cs.CL
+KW  - cs.AI
+KW  - cs.IR
+KW  - cs.MM
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - DRO-InstructZero: Distributionally Robust Prompt Optimization for Large Language Models
+AU  - Yangyang Li
+PY  - 2025
+Y1  - 2025/10/17
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.15260v1
+UR  - http://arxiv.org/abs/2510.15260v1
+AB  - Large language models are highly sensitive to prompt wording. However, popular automatic prompt search methods, including InstructZero, often degrade under distribution shift and adversarial evaluation because they optimize expected performance under a single evaluation distribution. Consequently, prompts that work in one setting frequently fail to transfer. To address this, DRO-InstructZero formulates zero-shot prompt optimization as robust Bayesian optimization. Specifically, an f-divergence ball defines an ambiguity set around the evaluation distribution, and a robust acquisition rule maximizes worst-case expected utility while retaining the query efficiency of Bayesian search. Therefore, the search explicitly targets reliability under distribution shift rather than average behavior alone. Experiments follow the instruction-induction protocol with matched query budgets across formality rewriting, code debugging, and translation. For example, on BIG-Bench informative-to-formal rewriting, accuracy improves from 61.3 +/- 0.7% to approximately 85-90%, yielding an absolute gain of about 25-30 points. Moreover, auto-debugging shows about +25-point gains under domain shift. Meanwhile, stable tasks such as cause-and-effect remain above 96%, indicating no loss on in-distribution cases. Furthermore, improvements are consistent across divergence choices and decoding temperatures. Overall, DRO-InstructZero connects distributionally robust optimization with prompt learning, offering a plug-and-play and general approach for reliable, transferable prompt alignment under real-world uncertainty.
+KW  - cs.LG
+KW  - cs.AI
+KW  - cs.CL
+KW  - 68T07, 68T50
+KW  - I.2.6; I.2.7; F.2.2
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - DCMIL: A Progressive Representation Learning of Whole Slide Images for Cancer Prognosis Analysis
+AU  - Chao Tu
+AU  - Kun Huang
+AU  - Jie Zhang
+AU  - Qianjin Feng
+AU  - Yu Zhang
+AU  - Zhenyuan Ning
+PY  - 2025
+Y1  - 2025/10/16
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.14403v2
+UR  - http://arxiv.org/abs/2510.14403v2
+AB  - The burgeoning discipline of computational pathology shows promise in harnessing whole slide images (WSIs) to quantify morphological heterogeneity and develop objective prognostic modes for human cancers. However, progress is impeded by the computational bottleneck of gigapixel-size inputs and the scarcity of dense manual annotations. Current methods often overlook fine-grained information across multi-magnification WSIs and variations in tumor microenvironments. Here, we propose an easy-to-hard progressive representation learning, termed dual-curriculum contrastive multi-instance learning (DCMIL), to efficiently process WSIs for cancer prognosis. The model does not rely on dense annotations and enables the direct transformation of gigapixel-size WSIs into outcome predictions. Extensive experiments on twelve cancer types (5,954 patients, 12.54 million tiles) demonstrate that DCMIL outperforms standard WSI-based prognostic models. Additionally, DCMIL identifies fine-grained prognosis-salient regions, provides robust instance uncertainty estimation, and captures morphological differences between normal and tumor tissues, with the potential to generate new biological insights. All codes have been made publicly accessible at https://github.com/tuuuc/DCMIL.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - CLEAR: Causal Learning Framework For Robust Histopathology Tumor Detection Under Out-Of-Distribution Shifts
+AU  - Kieu-Anh Truong Thi
+AU  - Huy-Hieu Pham
+AU  - Duc-Trong Le
+PY  - 2025
+Y1  - 2025/10/16
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.14273v1
+UR  - http://arxiv.org/abs/2510.14273v1
+AB  - Domain shift in histopathology, often caused by differences in acquisition processes or data sources, poses a major challenge to the generalization ability of deep learning models. Existing methods primarily rely on modeling statistical correlations by aligning feature distributions or introducing statistical variation, yet they often overlook causal relationships. In this work, we propose a novel causal-inference-based framework that leverages semantic features while mitigating the impact of confounders. Our method implements the front-door principle by designing transformation strategies that explicitly incorporate mediators and observed tissue slides. We validate our method on the CAMELYON17 dataset and a private histopathology dataset, demonstrating consistent performance gains across unseen domains. As a result, our approach achieved up to a 7% improvement in both the CAMELYON17 dataset and the private histopathology dataset, outperforming existing baselines. These results highlight the potential of causal inference as a powerful tool for addressing domain shift in histopathology image analysis.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - VisCoP: Visual Probing for Video Domain Adaptation of Vision Language Models
+AU  - Dominick Reilly
+AU  - Manish Kumar Govind
+AU  - Le Xue
+AU  - Srijan Das
+PY  - 2025
+Y1  - 2025/10/15
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.13808v1
+UR  - http://arxiv.org/abs/2510.13808v1
+AB  - Large Vision-Language Models (VLMs) excel at general visual reasoning tasks but exhibit sharp performance degradation when applied to novel domains with substantial distribution shifts from pretraining data. Existing domain adaptation approaches finetune different VLM components, but this often results in limited domain-specific feature learning or catastrophic forgetting of prior capabilities. To address these issues, we introduce Vision Contextualized Probing (VisCoP), which augments the VLM's vision encoder with a compact set of learnable visual probes. These probes enable efficient domain-specific adaptation with minimal modification to pretrained parameters. We evaluate VisCoP across three challenging domain adaptation settings-cross-view (exocentric to egocentric), cross-modal (RGB to depth), and cross-task (human understanding to robot control). Experiments show that VisCoP consistently outperforms existing adaptation strategies, achieving superior performance on target domains while effectively retaining source-domain knowledge.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Confidence-Based Response Abstinence: Improving LLM Trustworthiness via Activation-Based Uncertainty Estimation
+AU  - Zhiqi Huang
+AU  - Vivek Datla
+AU  - Chenyang Zhu
+AU  - Alfy Samuel
+AU  - Daben Liu
+AU  - Anoop Kumar
+AU  - Ritesh Soni
+PY  - 2025
+Y1  - 2025/10/15
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.13750v2
+UR  - http://arxiv.org/abs/2510.13750v2
+AB  - We propose a method for confidence estimation in retrieval-augmented generation (RAG) systems that aligns closely with the correctness of large language model (LLM) outputs. Confidence estimation is especially critical in high-stakes domains such as finance and healthcare, where the cost of an incorrect answer outweighs that of not answering the question. Our approach extends prior uncertainty quantification methods by leveraging raw feed-forward network (FFN) activations as auto-regressive signals, avoiding the information loss inherent in token logits and probabilities after projection and softmax normalization. We model confidence prediction as a sequence classification task, and regularize training with a Huber loss term to improve robustness against noisy supervision. Applied in a real-world financial industry customer-support setting with complex knowledge bases, our method outperforms strong baselines and maintains high accuracy under strict latency constraints. Experiments on Llama 3.1 8B model show that using activations from only the 16th layer preserves accuracy while reducing response latency. Our results demonstrate that activation-based confidence modeling offers a scalable, architecture-aware path toward trustworthy RAG deployment.
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Towards Adversarial Robustness and Uncertainty Quantification in DINOv2-based Few-Shot Anomaly Detection
+AU  - Akib Mohammed Khan
+AU  - Bartosz Krawczyk
+PY  - 2025
+Y1  - 2025/10/15
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.13643v1
+UR  - http://arxiv.org/abs/2510.13643v1
+AB  - Foundation models such as DINOv2 have shown strong performance in few-shot anomaly detection, yet two key questions remain unexamined: (i) how susceptible are these detectors to adversarial perturbations; and (ii) how well do their anomaly scores reflect calibrated uncertainty? Building on AnomalyDINO, a training-free deep nearest-neighbor detector over DINOv2 features, we present one of the first systematic studies of adversarial attacks and uncertainty estimation in this setting. To enable white-box gradient attacks while preserving test-time behavior, we attach a lightweight linear head to frozen DINOv2 features only for crafting perturbations. Using this heuristic, we evaluate the impact of FGSM across the MVTec-AD and VisA datasets and observe consistent drops in F1, AUROC, AP, and G-mean, indicating that imperceptible perturbations can flip nearest-neighbor relations in feature space to induce confident misclassification. Complementing robustness, we probe reliability and find that raw anomaly scores are poorly calibrated, revealing a gap between confidence and correctness that limits safety-critical use. As a simple, strong baseline toward trustworthiness, we apply post-hoc Platt scaling to the anomaly scores for uncertainty estimation. The resulting calibrated posteriors yield significantly higher predictive entropy on adversarially perturbed inputs than on clean ones, enabling a practical flagging mechanism for attack detection while reducing calibration error (ECE). Our findings surface concrete vulnerabilities in DINOv2-based few-shot anomaly detectors and establish an evaluation protocol and baseline for robust, uncertainty-aware anomaly detection. We argue that adversarial robustness and principled uncertainty quantification are not optional add-ons but essential capabilities if anomaly detection systems are to be trustworthy and ready for real-world deployment.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - ESI: Epistemic Uncertainty Quantification via Semantic-preserving Intervention for Large Language Models
+AU  - Mingda Li
+AU  - Xinyu Li
+AU  - Weinan Zhang
+AU  - Longxuan Ma
+PY  - 2025
+Y1  - 2025/10/15
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.13103v1
+UR  - http://arxiv.org/abs/2510.13103v1
+AB  - Uncertainty Quantification (UQ) is a promising approach to improve model reliability, yet quantifying the uncertainty of Large Language Models (LLMs) is non-trivial. In this work, we establish a connection between the uncertainty of LLMs and their invariance under semantic-preserving intervention from a causal perspective. Building on this foundation, we propose a novel grey-box uncertainty quantification method that measures the variation in model outputs before and after the semantic-preserving intervention. Through theoretical justification, we show that our method provides an effective estimate of epistemic uncertainty. Our extensive experiments, conducted across various LLMs and a variety of question-answering (QA) datasets, demonstrate that our method excels not only in terms of effectiveness but also in computational efficiency.
+KW  - cs.CL
+KW  - cs.AI
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Teaching Language Models to Faithfully Express their Uncertainty
+AU  - Bryan Eikema
+AU  - Evgenia Ilia
+AU  - José G. C. de Souza
+AU  - Chrysoula Zerva
+AU  - Wilker Aziz
+PY  - 2025
+Y1  - 2025/10/14
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.12587v1
+UR  - http://arxiv.org/abs/2510.12587v1
+AB  - Large language models (LLMs) often miscommunicate their uncertainty: repeated queries can produce divergent answers, yet generated responses are typically unhedged or hedged in ways that do not reflect this variability. This conveys unfaithful information about the uncertain state of the LLMs' knowledge, creating a faithfulness gap that affects even strong LLMs. We introduce Faithful Uncertainty Tuning (FUT): a fine-tuning approach that teaches instruction-tuned LLMs to express uncertainty faithfully without altering their underlying answer distribution. We construct training data by augmenting model samples with uncertainty hedges (i.e. verbal cues such as 'possibly' or 'likely') aligned with sample consistency, requiring no supervision beyond the model and a set of prompts. We evaluate FUT on open-domain question answering (QA) across multiple models and datasets. Our results show that FUT substantially reduces the faithfulness gap, while preserving QA accuracy and introducing minimal semantic distribution shift. Further analyses demonstrate robustness across decoding strategies, choice of hedgers, and other forms of uncertainty expression (i.e. numerical). These findings establish FUT as a simple and effective way to teach LLMs to communicate uncertainty faithfully.
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Ivan-ISTD: Rethinking Cross-domain Heteroscedastic Noise Perturbations in Infrared Small Target Detection
+AU  - Yuehui Li
+AU  - Yahao Lu
+AU  - Haoyuan Wu
+AU  - Sen Zhang
+AU  - Liang Lin
+AU  - Yukai Shi
+PY  - 2025
+Y1  - 2025/10/14
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.12241v1
+UR  - http://arxiv.org/abs/2510.12241v1
+AB  - In the multimedia domain, Infrared Small Target Detection (ISTD) plays a important role in drone-based multi-modality sensing. To address the dual challenges of cross-domain shift and heteroscedastic noise perturbations in ISTD, we propose a doubly wavelet-guided Invariance learning framework(Ivan-ISTD). In the first stage, we generate training samples aligned with the target domain using Wavelet-guided Cross-domain Synthesis. This wavelet-guided alignment machine accurately separates the target background through multi-frequency wavelet filtering. In the second stage, we introduce Real-domain Noise Invariance Learning, which extracts real noise characteristics from the target domain to build a dynamic noise library. The model learns noise invariance through self-supervised loss, thereby overcoming the limitations of distribution bias in traditional artificial noise modeling. Finally, we create the Dynamic-ISTD Benchmark, a cross-domain dynamic degradation dataset that simulates the distribution shifts encountered in real-world applications. Additionally, we validate the versatility of our method using other real-world datasets. Experimental results demonstrate that our approach outperforms existing state-of-the-art methods in terms of many quantitative metrics. In particular, Ivan-ISTD demonstrates excellent robustness in cross-domain scenarios. The code for this work can be found at: https://github.com/nanjin1/Ivan-ISTD.
+KW  - cs.CV
+KW  - eess.IV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - DiSTAR: Diffusion over a Scalable Token Autoregressive Representation for Speech Generation
+AU  - Yakun Song
+AU  - Xiaobin Zhuang
+AU  - Jiawei Chen
+AU  - Zhikang Niu
+AU  - Guanrou Yang
+AU  - Chenpeng Du
+AU  - Dongya Jia
+AU  - Zhuo Chen
+AU  - Yuping Wang
+AU  - Yuxuan Wang
+AU  - Xie Chen
+PY  - 2025
+Y1  - 2025/10/14
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.12210v2
+UR  - http://arxiv.org/abs/2510.12210v2
+AB  - Recent attempts to interleave autoregressive (AR) sketchers with diffusion-based refiners over continuous speech representations have shown promise, but they remain brittle under distribution shift and offer limited levers for controllability. We introduce DISTAR, a zero-shot text-to-speech framework that operates entirely in a discrete residual vector quantization (RVQ) code space and tightly couples an AR language model with a masked diffusion model, without forced alignment or a duration predictor. Concretely, DISTAR drafts block-level RVQ tokens with an AR language model and then performs parallel masked-diffusion infilling conditioned on the draft to complete the next block, yielding long-form synthesis with blockwise parallelism while mitigating classic AR exposure bias. The discrete code space affords explicit control at inference: DISTAR produces high-quality audio under both greedy and sample-based decoding using classifier-free guidance, supports trade-offs between robustness and diversity, and enables variable bit-rate and controllable computation via RVQ layer pruning at test time. Extensive experiments and ablations demonstrate that DISTAR surpasses state-of-the-art zero-shot TTS systems in robustness, naturalness, and speaker/style consistency, while maintaining rich output diversity. Audio samples are provided on https://anonymous.4open.science/w/DiSTAR_demo.
+KW  - eess.AS
+KW  - cs.CL
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Credal Transformer: A Principled Approach for Quantifying and Mitigating Hallucinations in Large Language Models
+AU  - Shihao Ji
+AU  - Zihui Song
+AU  - Jiajie Huang
+PY  - 2025
+Y1  - 2025/10/14
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.12137v1
+UR  - http://arxiv.org/abs/2510.12137v1
+AB  - Large Language Models (LLMs) hallucinate, generating factually incorrect yet confident assertions. We argue this stems from the Transformer's Softmax function, which creates "Artificial Certainty" by collapsing ambiguous attention scores into a single probability distribution, discarding uncertainty information at each layer. To fix this, we introduce the Credal Transformer, which replaces standard attention with a Credal Attention Mechanism (CAM) based on evidential theory. CAM produces a "credal set" (a set of distributions) instead of a single attention vector, with the set's size directly measuring model uncertainty. We implement this by re-conceptualizing attention scores as evidence masses for a Dirichlet distribution: sufficient evidence recovers standard attention, while insufficient evidence yields a diffuse distribution, representing ambiguity. Empirically, the Credal Transformer identifies out-of-distribution inputs, quantifies ambiguity, and significantly reduces confident errors on unanswerable questions by abstaining. Our contribution is a new architecture to mitigate hallucinations and a design paradigm that integrates uncertainty quantification directly into the model, providing a foundation for more reliable AI.
+KW  - cs.CL
+KW  - cs.AI
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Uncertainty Quantification for Hallucination Detection in Large Language Models: Foundations, Methodology, and Future Directions
+AU  - Sungmin Kang
+AU  - Yavuz Faruk Bakman
+AU  - Duygu Nur Yaldiz
+AU  - Baturalp Buyukates
+AU  - Salman Avestimehr
+PY  - 2025
+Y1  - 2025/10/14
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.12040v1
+UR  - http://arxiv.org/abs/2510.12040v1
+AB  - The rapid advancement of large language models (LLMs) has transformed the landscape of natural language processing, enabling breakthroughs across a wide range of areas including question answering, machine translation, and text summarization. Yet, their deployment in real-world applications has raised concerns over reliability and trustworthiness, as LLMs remain prone to hallucinations that produce plausible but factually incorrect outputs. Uncertainty quantification (UQ) has emerged as a central research direction to address this issue, offering principled measures for assessing the trustworthiness of model generations. We begin by introducing the foundations of UQ, from its formal definition to the traditional distinction between epistemic and aleatoric uncertainty, and then highlight how these concepts have been adapted to the context of LLMs. Building on this, we examine the role of UQ in hallucination detection, where quantifying uncertainty provides a mechanism for identifying unreliable generations and improving reliability. We systematically categorize a wide spectrum of existing methods along multiple dimensions and present empirical results for several representative approaches. Finally, we discuss current limitations and outline promising future research directions, providing a clearer picture of the current landscape of LLM UQ for hallucination detection.
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Evaluating Reasoning Faithfulness in Medical Vision-Language Models using Multimodal Perturbations
+AU  - Johannes Moll
+AU  - Markus Graf
+AU  - Tristan Lemke
+AU  - Nicolas Lenhart
+AU  - Daniel Truhn
+AU  - Jean-Benoit Delbrouck
+AU  - Jiazhen Pan
+AU  - Daniel Rueckert
+AU  - Lisa C. Adams
+AU  - Keno K. Bressem
+PY  - 2025
+Y1  - 2025/10/13
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.11196v1
+UR  - http://arxiv.org/abs/2510.11196v1
+AB  - Vision-language models (VLMs) often produce chain-of-thought (CoT) explanations that sound plausible yet fail to reflect the underlying decision process, undermining trust in high-stakes clinical use. Existing evaluations rarely catch this misalignment, prioritizing answer accuracy or adherence to formats. We present a clinically grounded framework for chest X-ray visual question answering (VQA) that probes CoT faithfulness via controlled text and image modifications across three axes: clinical fidelity, causal attribution, and confidence calibration. In a reader study (n=4), evaluator-radiologist correlations fall within the observed inter-radiologist range for all axes, with strong alignment for attribution (Kendall's $\tau_b=0.670$), moderate alignment for fidelity ($\tau_b=0.387$), and weak alignment for confidence tone ($\tau_b=0.091$), which we report with caution. Benchmarking six VLMs shows that answer accuracy and explanation quality are decoupled, acknowledging injected cues does not ensure grounding, and text cues shift explanations more than visual cues. While some open-source models match final answer accuracy, proprietary models score higher on attribution (25.0% vs. 1.4%) and often on fidelity (36.1% vs. 31.7%), highlighting deployment risks and the need to evaluate beyond final answer accuracy.
+KW  - cs.CL
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - ADVICE: Answer-Dependent Verbalized Confidence Estimation
+AU  - Ki Jung Seo
+AU  - Sehun Lim
+AU  - Taeuk Kim
+PY  - 2025
+Y1  - 2025/10/13
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.10913v1
+UR  - http://arxiv.org/abs/2510.10913v1
+AB  - Recent progress in large language models (LLMs) has enabled them to express their confidence in natural language, enhancing transparency and reliability. However, their confidence often exhibits overconfidence, the cause of which remains poorly understood. In this work, we conduct a detailed analysis of the dynamics underlying verbalized confidence and identify answer-independence as a key factor, defined as the model's failure to condition confidence on its own answer. To address this, we propose ADVICE (Answer-Dependent Verbalized Confidence Estimation), a fine-tuning framework that facilitates answer-grounded confidence estimation. Extensive experiments show that ADVICE substantially improves confidence calibration while preserving task performance. Further analyses confirm that ADVICE strengthens answer-groundedness, leading to more balanced and well-calibrated confidence distributions. Our findings shed light on the origin of overconfidence and establish a framework for more trustworthy confidence verbalization.
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Audit-of-Understanding: Posterior-Constrained Inference for Mathematical Reasoning in Language Models
+AU  - Samir Abdaljalil
+AU  - Erchin Serpedin
+AU  - Khalid Qaraqe
+AU  - Hasan Kurban
+PY  - 2025
+Y1  - 2025/10/11
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.10252v2
+UR  - http://arxiv.org/abs/2510.10252v2
+AB  - Large language models (LLMs) often generate reasoning traces that appear coherent but rest on unsupported assumptions, leading to hallucinated conclusions. Prior work mainly addresses factual hallucinations or relies on post-hoc verification, leaving reasoning-induced hallucinations largely unaddressed. We propose Audit-of-Understanding (AoU), a framework that constrains inference to validated premises through three phases: (1) decomposing a query into candidate assumptions, (2) auditing their support, and (3) conditioning inference only on the validated subset. Formally, AoU is \emph{posterior-constrained inference}, connecting to selective prediction and rejection learning. Our contributions are threefold: (i) theoretical guarantees under perfect validation, (ii) excess-risk bounds under imperfect audits, and (iii) tractability analysis. Empirically, AoU improves both accuracy and faithfulness on GSM8K, MultiArith, and SVAMP, achieving up to +30% gains on GSM8K, +45% on MultiArith, and consistent +20--28% improvements on SVAMP over Chain-of-Thought, Self-Consistency, and CoT-Decoding. Code is available at https://anonymous.4open.science/r/audit-of-understanding-E28B.
+KW  - cs.CL
+KW  - cs.AI
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - You only need 4 extra tokens: Synergistic Test-time Adaptation for LLMs
+AU  - Yijie Xu
+AU  - Huizai Yao
+AU  - Zhiyu Guo
+AU  - Weiyu Guo
+AU  - Pengteng Li
+AU  - Aiwei Liu
+AU  - Xuming Hu
+AU  - Hui Xiong
+PY  - 2025
+Y1  - 2025/10/11
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.10223v1
+UR  - http://arxiv.org/abs/2510.10223v1
+AB  - Large language models (LLMs) are increasingly deployed in specialized domains such as finance, medicine, and agriculture, where they face significant distribution shifts from their training data. Domain-specific fine-tuning can mitigate this challenge but relies on high-quality labeled data that is expensive and slow to collect in expertise-limited settings. We study label-free test-time adaptation for language models and present SyTTA, an inference-time framework that adapts models on-the-fly without additional supervision. SyTTA couples two complementary uncertainty signals that arise under distribution shift: input-side perplexity, indicating mismatch with domain-specific terminology and patterns, and output-side predictive entropy, indicating diffuse and unstable token probabilities during generation. Across diverse model architectures and domain-specific benchmarks, SyTTA delivers consistent gains. Notably, on agricultural question answering, SyTTA improves Rouge-LSum by over 120% on Qwen-2.5-7B with only 4 extra tokens per query. These results show that effective test-time adaptation for language models is achievable without labeled examples, supporting deployment in label-scarce domains. The code will be made available upon acceptance.
+KW  - cs.CL
+KW  - cs.AI
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - An uncertainty-aware framework for data-efficient multi-view animal pose estimation
+AU  - Lenny Aharon
+AU  - Keemin Lee
+AU  - Karan Sikka
+AU  - Selmaan Chettih
+AU  - Cole Hurwitz
+AU  - Liam Paninski
+AU  - Matthew R Whiteway
+PY  - 2025
+Y1  - 2025/10/10
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.09903v1
+UR  - http://arxiv.org/abs/2510.09903v1
+AB  - Multi-view pose estimation is essential for quantifying animal behavior in scientific research, yet current methods struggle to achieve accurate tracking with limited labeled data and suffer from poor uncertainty estimates. We address these challenges with a comprehensive framework combining novel training and post-processing techniques, and a model distillation procedure that leverages the strengths of these techniques to produce a more efficient and effective pose estimator. Our multi-view transformer (MVT) utilizes pretrained backbones and enables simultaneous processing of information across all views, while a novel patch masking scheme learns robust cross-view correspondences without camera calibration. For calibrated setups, we incorporate geometric consistency through 3D augmentation and a triangulation loss. We extend the existing Ensemble Kalman Smoother (EKS) post-processor to the nonlinear case and enhance uncertainty quantification via a variance inflation technique. Finally, to leverage the scaling properties of the MVT, we design a distillation procedure that exploits improved EKS predictions and uncertainty estimates to generate high-quality pseudo-labels, thereby reducing dependence on manual labels. Our framework components consistently outperform existing methods across three diverse animal species (flies, mice, chickadees), with each component contributing complementary benefits. The result is a practical, uncertainty-aware system for reliable pose estimation that enables downstream behavioral analyses under real-world data constraints.
+KW  - cs.CV
+KW  - q-bio.QM
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Reliable Active Learning from Unreliable Labels via Neural Collapse Geometry
+AU  - Atharv Goel
+AU  - Sharat Agarwal
+AU  - Saket Anand
+AU  - Chetan Arora
+PY  - 2025
+Y1  - 2025/10/10
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.09740v1
+UR  - http://arxiv.org/abs/2510.09740v1
+AB  - Active Learning (AL) promises to reduce annotation cost by prioritizing informative samples, yet its reliability is undermined when labels are noisy or when the data distribution shifts. In practice, annotators make mistakes, rare categories are ambiguous, and conventional AL heuristics (uncertainty, diversity) often amplify such errors by repeatedly selecting mislabeled or redundant samples. We propose Reliable Active Learning via Neural Collapse Geometry (NCAL-R), a framework that leverages the emergent geometric regularities of deep networks to counteract unreliable supervision. Our method introduces two complementary signals: (i) a Class-Mean Alignment Perturbation score, which quantifies how candidate samples structurally stabilize or distort inter-class geometry, and (ii) a Feature Fluctuation score, which captures temporal instability of representations across training checkpoints. By combining these signals, NCAL-R prioritizes samples that both preserve class separation and highlight ambiguous regions, mitigating the effect of noisy or redundant labels. Experiments on ImageNet-100 and CIFAR100 show that NCAL-R consistently outperforms standard AL baselines, achieving higher accuracy with fewer labels, improved robustness under synthetic label noise, and stronger generalization to out-of-distribution data. These results suggest that incorporating geometric reliability criteria into acquisition decisions can make Active Learning less brittle to annotation errors and distribution shifts, a key step toward trustworthy deployment in real-world labeling pipelines. Our code is available at https://github.com/Vision-IIITD/NCAL.
+KW  - cs.LG
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - SIMBA UQ: Similarity-Based Aggregation for Uncertainty Quantification in Large Language Models
+AU  - Debarun Bhattacharjya
+AU  - Balaji Ganesan
+AU  - Junkyu Lee
+AU  - Radu Marinescu
+AU  - Katsiaryna Mirylenka
+AU  - Michael Glass
+AU  - Xiao Shou
+PY  - 2025
+Y1  - 2025/10/10
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.13836v1
+UR  - http://arxiv.org/abs/2510.13836v1
+AB  - When does a large language model (LLM) know what it does not know? Uncertainty quantification (UQ) provides measures of uncertainty, such as an estimate of the confidence in an LLM's generated output, and is therefore increasingly recognized as a crucial component of trusted AI systems. Black-box UQ methods do not require access to internal model information from the generating LLM and therefore have numerous real-world advantages, such as robustness to system changes, adaptability to choice of LLM, reduced costs, and computational tractability. In this paper, we investigate the effectiveness of UQ techniques that are primarily but not necessarily entirely black-box, where the consistency between a generated output and other sampled generations is used as a proxy for confidence in its correctness. We propose a high-level non-verbalized similarity-based aggregation framework that subsumes a broad swath of UQ approaches suitable for complex generative tasks, as well as introduce specific novel techniques from the framework that train confidence estimation models using small training sets. Through an empirical study with datasets spanning the diverse tasks of question answering, summarization, and text-to-SQL, we demonstrate that our proposed similarity-based methods can yield better calibrated confidences than baselines.
+KW  - cs.CL
+KW  - cs.AI
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Enhancing Visual Prompting through Expanded Transformation Space and Overfitting Mitigation
+AU  - Shohei Enomoto
+PY  - 2025
+Y1  - 2025/10/09
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.07823v1
+UR  - http://arxiv.org/abs/2510.07823v1
+AB  - Visual prompting (VP) has emerged as a promising parameter-efficient fine-tuning approach for adapting pre-trained vision models to downstream tasks without modifying model parameters. Despite offering advantages like negligible computational overhead and compatibility with black-box models, conventional VP methods typically achieve lower accuracy than other adaptation approaches. Our analysis reveals two critical limitations: the restricted expressivity of simple additive transformation and a tendency toward overfitting when the parameter count increases. To address these challenges, we propose ACAVP (Affine, Color, and Additive Visual Prompting), which enhances VP's expressive power by introducing complementary transformation operations: affine transformation for creating task-specific prompt regions while preserving original image information, and color transformation for emphasizing task-relevant visual features. Additionally, we identify that overfitting is a critical issue in VP training and introduce TrivialAugment as an effective data augmentation, which not only benefits our approach but also significantly improves existing VP methods, with performance gains of up to 12 percentage points on certain datasets. This demonstrates that appropriate data augmentation is universally beneficial for VP training. Extensive experiments across twelve diverse image classification datasets with two different model architectures demonstrate that ACAVP achieves state-of-the-art accuracy among VP methods, surpasses linear probing in average accuracy, and exhibits superior robustness to distribution shifts, all while maintaining minimal computational overhead during inference.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Parallel Test-Time Scaling for Latent Reasoning Models
+AU  - Runyang You
+AU  - Yongqi Li
+AU  - Meng Liu
+AU  - Wenjie Wang
+AU  - Liqiang Nie
+AU  - Wenjie Li
+PY  - 2025
+Y1  - 2025/10/09
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.07745v1
+UR  - http://arxiv.org/abs/2510.07745v1
+AB  - Parallel test-time scaling (TTS) is a pivotal approach for enhancing large language models (LLMs), typically by sampling multiple token-based chains-of-thought in parallel and aggregating outcomes through voting or search. Recent advances in latent reasoning, where intermediate reasoning unfolds in continuous vector spaces, offer a more efficient alternative to explicit Chain-of-Thought, yet whether such latent models can similarly benefit from parallel TTS remains open, mainly due to the absence of sampling mechanisms in continuous space, and the lack of probabilistic signals for advanced trajectory aggregation. \ This work enables parallel TTS for latent reasoning models by addressing the above issues. For sampling, we introduce two uncertainty-inspired stochastic strategies: Monte Carlo Dropout and Additive Gaussian Noise. For aggregation, we design a Latent Reward Model (LatentRM) trained with step-wise contrastive objective to score and guide latent reasoning. Extensive experiments and visualization analyses show that both sampling strategies scale effectively with compute and exhibit distinct exploration dynamics, while LatentRM enables effective trajectory selection. Together, our explorations open a new direction for scalable inference in continuous spaces. Code released at https://github.com/YRYangang/LatentTTS.
+KW  - cs.CL
+KW  - cs.AI
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Revisiting Mixout: An Overlooked Path to Robust Finetuning
+AU  - Masih Aminbeidokhti
+AU  - Heitor Rapela Medeiros
+AU  - Eric Granger
+AU  - Marco Pedersoli
+PY  - 2025
+Y1  - 2025/10/08
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.06982v1
+UR  - http://arxiv.org/abs/2510.06982v1
+AB  - Finetuning vision foundation models often improves in-domain accuracy but comes at the cost of robustness under distribution shift. We revisit Mixout, a stochastic regularizer that intermittently replaces finetuned weights with their pretrained reference, through the lens of a single-run, weight-sharing implicit ensemble. This perspective reveals three key levers that govern robustness: the \emph{masking anchor}, \emph{resampling frequency}, and \emph{mask sparsity}. Guided by this analysis, we introduce GMixout, which (i) replaces the fixed anchor with an exponential moving-average snapshot that adapts during training, and (ii) regulates masking period via an explicit resampling-frequency hyperparameter. Our sparse-kernel implementation updates only a small fraction of parameters with no inference-time overhead, enabling training on consumer-grade GPUs. Experiments on benchmarks covering covariate shift, corruption, and class imbalance, ImageNet / ImageNet-LT, DomainNet, iWildCam, and CIFAR100-C, GMixout consistently improves in-domain accuracy beyond zero-shot performance while surpassing both Model Soups and strong parameter-efficient finetuning baselines under distribution shift.
+KW  - cs.LG
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - UniFField: A Generalizable Unified Neural Feature Field for Visual, Semantic, and Spatial Uncertainties in Any Scene
+AU  - Christian Maurer
+AU  - Snehal Jauhri
+AU  - Sophie Lueth
+AU  - Georgia Chalvatzaki
+PY  - 2025
+Y1  - 2025/10/08
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.06754v1
+UR  - http://arxiv.org/abs/2510.06754v1
+AB  - Comprehensive visual, geometric, and semantic understanding of a 3D scene is crucial for successful execution of robotic tasks, especially in unstructured and complex environments. Additionally, to make robust decisions, it is necessary for the robot to evaluate the reliability of perceived information. While recent advances in 3D neural feature fields have enabled robots to leverage features from pretrained foundation models for tasks such as language-guided manipulation and navigation, existing methods suffer from two critical limitations: (i) they are typically scene-specific, and (ii) they lack the ability to model uncertainty in their predictions. We present UniFField, a unified uncertainty-aware neural feature field that combines visual, semantic, and geometric features in a single generalizable representation while also predicting uncertainty in each modality. Our approach, which can be applied zero shot to any new environment, incrementally integrates RGB-D images into our voxel-based feature representation as the robot explores the scene, simultaneously updating uncertainty estimation. We evaluate our uncertainty estimations to accurately describe the model prediction errors in scene reconstruction and semantic feature prediction. Furthermore, we successfully leverage our feature predictions and their respective uncertainty for an active object search task using a mobile manipulator robot, demonstrating the capability for robust decision-making.
+KW  - cs.RO
+KW  - cs.CV
+KW  - cs.LG
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Scalable deep fusion of spaceborne lidar and synthetic aperture radar for global forest structural complexity mapping
+AU  - Tiago de Conto
+AU  - John Armston
+AU  - Ralph Dubayah
+PY  - 2025
+Y1  - 2025/10/07
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.06299v1
+UR  - http://arxiv.org/abs/2510.06299v1
+AB  - Forest structural complexity metrics integrate multiple canopy attributes into a single value that reflects habitat quality and ecosystem function. Spaceborne lidar from the Global Ecosystem Dynamics Investigation (GEDI) has enabled mapping of structural complexity in temperate and tropical forests, but its sparse sampling limits continuous high-resolution mapping. We present a scalable, deep learning framework fusing GEDI observations with multimodal Synthetic Aperture Radar (SAR) datasets to produce global, high-resolution (25 m) wall-to-wall maps of forest structural complexity. Our adapted EfficientNetV2 architecture, trained on over 130 million GEDI footprints, achieves high performance (global R2 = 0.82) with fewer than 400,000 parameters, making it an accessible tool that enables researchers to process datasets at any scale without requiring specialized computing infrastructure. The model produces accurate predictions with calibrated uncertainty estimates across biomes and time periods, preserving fine-scale spatial patterns. It has been used to generate a global, multi-temporal dataset of forest structural complexity from 2015 to 2022. Through transfer learning, this framework can be extended to predict additional forest structural variables with minimal computational cost. This approach supports continuous, multi-temporal monitoring of global forest structural dynamics and provides tools for biodiversity conservation and ecosystem management efforts in a changing climate.
+KW  - cs.CV
+KW  - cs.LG
+KW  - stat.AP
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Mysteries of the Deep: Role of Intermediate Representations in Out of Distribution Detection
+AU  - I. M. De la Jara
+AU  - C. Rodriguez-Opazo
+AU  - D. Teney
+AU  - D. Ranasinghe
+AU  - E. Abbasnejad
+PY  - 2025
+Y1  - 2025/10/07
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.05782v2
+UR  - http://arxiv.org/abs/2510.05782v2
+AB  - Out-of-distribution (OOD) detection is essential for reliably deploying machine learning models in the wild. Yet, most methods treat large pre-trained models as monolithic encoders and rely solely on their final-layer representations for detection. We challenge this wisdom. We reveal the \textit{intermediate layers} of pre-trained models, shaped by residual connections that subtly transform input projections, \textit{can} encode \textit{surprisingly rich and diverse signals} for detecting distributional shifts. Importantly, to exploit latent representation diversity across layers, we introduce an entropy-based criterion to \textit{automatically} identify layers offering the most complementary information in a training-free setting -- \textit{without access to OOD data}. We show that selectively incorporating these intermediate representations can increase the accuracy of OOD detection by up to \textbf{$10\%$} in far-OOD and over \textbf{$7\%$} in near-OOD benchmarks compared to state-of-the-art training-free methods across various model architectures and training objectives. Our findings reveal a new avenue for OOD detection research and uncover the impact of various training objectives and model architectures on confidence-based OOD detection methods.
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Towards Reliable and Practical LLM Security Evaluations via Bayesian Modelling
+AU  - Mary Llewellyn
+AU  - Annie Gray
+AU  - Josh Collyer
+AU  - Michael Harries
+PY  - 2025
+Y1  - 2025/10/07
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.05709v1
+UR  - http://arxiv.org/abs/2510.05709v1
+AB  - Before adopting a new large language model (LLM) architecture, it is critical to understand vulnerabilities accurately. Existing evaluations can be difficult to trust, often drawing conclusions from LLMs that are not meaningfully comparable, relying on heuristic inputs or employing metrics that fail to capture the inherent uncertainty. In this paper, we propose a principled and practical end-to-end framework for evaluating LLM vulnerabilities to prompt injection attacks. First, we propose practical approaches to experimental design, tackling unfair LLM comparisons by considering two practitioner scenarios: when training an LLM and when deploying a pre-trained LLM. Second, we address the analysis of experiments and propose a Bayesian hierarchical model with embedding-space clustering. This model is designed to improve uncertainty quantification in the common scenario that LLM outputs are not deterministic, test prompts are designed imperfectly, and practitioners only have a limited amount of compute to evaluate vulnerabilities. We show the improved inferential capabilities of the model in several prompt injection attack settings. Finally, we demonstrate the pipeline to evaluate the security of Transformer versus Mamba architectures. Our findings show that consideration of output variability can suggest less definitive findings. However, for some attacks, we find notably increased Transformer and Mamba-variant vulnerabilities across LLMs with the same training data or mathematical ability.
+KW  - cs.CR
+KW  - cs.AI
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - NEO: No-Optimization Test-Time Adaptation through Latent Re-Centering
+AU  - Alexander Murphy
+AU  - Michal Danilowski
+AU  - Soumyajit Chatterjee
+AU  - Abhirup Ghosh
+PY  - 2025
+Y1  - 2025/10/07
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.05635v1
+UR  - http://arxiv.org/abs/2510.05635v1
+AB  - Test-Time Adaptation (TTA) methods are often computationally expensive, require a large amount of data for effective adaptation, or are brittle to hyperparameters. Based on a theoretical foundation of the geometry of the latent space, we are able to significantly improve the alignment between source and distribution-shifted samples by re-centering target data embeddings at the origin. This insight motivates NEO -- a hyperparameter-free fully TTA method, that adds no significant compute compared to vanilla inference. NEO is able to improve the classification accuracy of ViT-Base on ImageNet-C from 55.6% to 59.2% after adapting on just one batch of 64 samples. When adapting on 512 samples NEO beats all 7 TTA methods we compare against on ImageNet-C, ImageNet-R and ImageNet-S and beats 6/7 on CIFAR-10-C, while using the least amount of compute. NEO performs well on model calibration metrics and additionally is able to adapt from 1 class to improve accuracy on 999 other classes in ImageNet-C. On Raspberry Pi and Jetson Orin Nano devices, NEO reduces inference time by 63% and memory usage by 9% compared to baselines. Our results based on 3 ViT architectures and 4 datasets show that NEO can be used efficiently and effectively for TTA.
+KW  - cs.LG
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Domain-Shift-Aware Conformal Prediction for Large Language Models
+AU  - Zhexiao Lin
+AU  - Yuanyuan Li
+AU  - Neeraj Sarna
+AU  - Yuanyuan Gao
+AU  - Michael von Gablenz
+PY  - 2025
+Y1  - 2025/10/07
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.05566v1
+UR  - http://arxiv.org/abs/2510.05566v1
+AB  - Large language models have achieved impressive performance across diverse tasks. However, their tendency to produce overconfident and factually incorrect outputs, known as hallucinations, poses risks in real world applications. Conformal prediction provides finite-sample, distribution-free coverage guarantees, but standard conformal prediction breaks down under domain shift, often leading to under-coverage and unreliable prediction sets. We propose a new framework called Domain-Shift-Aware Conformal Prediction (DS-CP). Our framework adapts conformal prediction to large language models under domain shift, by systematically reweighting calibration samples based on their proximity to the test prompt, thereby preserving validity while enhancing adaptivity. Our theoretical analysis and experiments on the MMLU benchmark demonstrate that the proposed method delivers more reliable coverage than standard conformal prediction, especially under substantial distribution shifts, while maintaining efficiency. This provides a practical step toward trustworthy uncertainty quantification for large language models in real-world deployment.
+KW  - stat.ML
+KW  - cs.AI
+KW  - cs.CL
+KW  - cs.LG
+KW  - stat.AP
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - RAG Makes Guardrails Unsafe? Investigating Robustness of Guardrails under RAG-style Contexts
+AU  - Yining She
+AU  - Daniel W. Peterson
+AU  - Marianne Menglin Liu
+AU  - Vikas Upadhyay
+AU  - Mohammad Hossein Chaghazardi
+AU  - Eunsuk Kang
+AU  - Dan Roth
+PY  - 2025
+Y1  - 2025/10/06
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.05310v1
+UR  - http://arxiv.org/abs/2510.05310v1
+AB  - With the increasing adoption of large language models (LLMs), ensuring the safety of LLM systems has become a pressing concern. External LLM-based guardrail models have emerged as a popular solution to screen unsafe inputs and outputs, but they are themselves fine-tuned or prompt-engineered LLMs that are vulnerable to data distribution shifts. In this paper, taking Retrieval Augmentation Generation (RAG) as a case study, we investigated how robust LLM-based guardrails are against additional information embedded in the context. Through a systematic evaluation of 3 Llama Guards and 2 GPT-oss models, we confirmed that inserting benign documents into the guardrail context alters the judgments of input and output guardrails in around 11% and 8% of cases, making them unreliable. We separately analyzed the effect of each component in the augmented context: retrieved documents, user query, and LLM-generated response. The two mitigation methods we tested only bring minor improvements. These results expose a context-robustness gap in current guardrails and motivate training and evaluation protocols that are robust to retrieval and query composition.
+KW  - cs.CL
+KW  - cs.AI
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - Beyond Monolithic Rewards: A Hybrid and Multi-Aspect Reward Optimization for MLLM Alignment
+AU  - Radha Gulhane
+AU  - Sathish Reddy Indurthi
+PY  - 2025
+Y1  - 2025/10/06
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.05283v1
+UR  - http://arxiv.org/abs/2510.05283v1
+AB  - Aligning multimodal large language models (MLLMs) with human preferences often relies on single-signal, model-based reward methods. Such monolithic rewards often lack confidence calibration across domain-specific tasks, fail to capture diverse aspects of human preferences, and require extensive data annotation and reward model training. In this work, we propose a hybrid reward modeling framework that integrates complementary reward paradigms: (i) model-based rewards, where a learned reward model predicts scalar or vector scores from synthetic and human feedback, and (ii) rule-based rewards, where domain-specific heuristics provide explicit correctness signals with confidence. Beyond accuracy, we further incorporate multi-aspect rewards to enforce instruction adherence and introduce a generalized length-penalty reward to stabilize training and improve performance. The proposed framework provides a flexible and effective approach to aligning MLLMs through reinforcement learning policy optimization. Our experiments show consistent improvements across different multimodal benchmarks when applying hybrid and multi-aspect reward modeling. Our best performing model in the 3B family achieves an overall average improvement of ~9.5% across general and math reasoning tasks. Focusing specifically on mathematical benchmarks, the model achieves a significant average improvement of ~16%, highlighting its effectiveness in mathematical reasoning and problem solving.
+KW  - cs.AI
+KW  - cs.CL
+KW  - cs.CV
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - When Models Lie, We Learn: Multilingual Span-Level Hallucination Detection with PsiloQA
+AU  - Elisei Rykov
+AU  - Kseniia Petrushina
+AU  - Maksim Savkin
+AU  - Valerii Olisov
+AU  - Artem Vazhentsev
+AU  - Kseniia Titova
+AU  - Alexander Panchenko
+AU  - Vasily Konovalov
+AU  - Julia Belikova
+PY  - 2025
+Y1  - 2025/10/06
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.04849v1
+UR  - http://arxiv.org/abs/2510.04849v1
+AB  - Hallucination detection remains a fundamental challenge for the safe and reliable deployment of large language models (LLMs), especially in applications requiring factual accuracy. Existing hallucination benchmarks often operate at the sequence level and are limited to English, lacking the fine-grained, multilingual supervision needed for a comprehensive evaluation. In this work, we introduce PsiloQA, a large-scale, multilingual dataset annotated with span-level hallucinations across 14 languages. PsiloQA is constructed through an automated three-stage pipeline: generating question-answer pairs from Wikipedia using GPT-4o, eliciting potentially hallucinated answers from diverse LLMs in a no-context setting, and automatically annotating hallucinated spans using GPT-4o by comparing against golden answers and retrieved context. We evaluate a wide range of hallucination detection methods -- including uncertainty quantification, LLM-based tagging, and fine-tuned encoder models -- and show that encoder-based models achieve the strongest performance across languages. Furthermore, PsiloQA demonstrates effective cross-lingual generalization and supports robust knowledge transfer to other benchmarks, all while being significantly more cost-efficient than human-annotated datasets. Our dataset and results advance the development of scalable, fine-grained hallucination detection in multilingual settings.
+KW  - cs.CL
+LA  - en
+ER  - 
+TY  - JOUR
+TI  - On the Role of Unobserved Sequences on Sample-based Uncertainty Quantification for LLMs
+AU  - Lucie Kunitomo-Jacquin
+AU  - Edison Marrese-Taylor
+AU  - Ken Fukuda
+PY  - 2025
+Y1  - 2025/10/06
+JO  - arXiv
+T2  - arXiv
+ID  - 2510.04439v1
+UR  - http://arxiv.org/abs/2510.04439v1
+AB  - Quantifying uncertainty in large language models (LLMs) is important for safety-critical applications because it helps spot incorrect answers, known as hallucinations. One major trend of uncertainty quantification methods is based on estimating the entropy of the distribution of the LLM's potential output sequences. This estimation is based on a set of output sequences and associated probabilities obtained by querying the LLM several times. In this paper, we advocate and experimentally show that the probability of unobserved sequences plays a crucial role, and we recommend future research to integrate it to enhance such LLM uncertainty quantification methods.
+KW  - cs.CL
+LA  - en
+ER  - 

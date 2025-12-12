@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Fill | AntiGravity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="main-header">
+            <h1>PDF Direct Fill</h1>
+            <p>Populate your PDF templates directly from a CSV file.</p>
+        </header>
+
+        <nav class="main-nav">
+            <a href="/" class="nav-link">Extractor</a>
+            <a href="/generate-page" class="nav-link">Generator</a>
+            <a href="/direct-fill-page" class="nav-link active">Direct Fill</a>
+        </nav>
+
+        <main>
+            <section class="card upload-card">
+                <h2>Direct PDF Fill</h2>
+                <p class="subtext">Upload a single CSV and a PDF template to generate filled forms.</p>
+
+                <form id="directFillForm" action="/direct-fill" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="csv_file" class="file-label">
+                            <span class="step-badge">1</span>
+                            <div class="label-text">
+                                <strong>Data CSV</strong>
+                                <span class="file-name" id="csv-name">No file chosen</span>
+                            </div>
+                            <input type="file" id="csv_file" name="csv_file" accept=".csv" required>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="template" class="file-label">
+                            <span class="step-badge">2</span>
+                            <div class="label-text">
+                                <strong>Template PDF</strong>
+                                <span class="file-name" id="template-name">No file chosen</span>
+                            </div>
+                            <input type="file" id="template" name="template" accept=".pdf" required>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="cta-button" id="directFillBtn">
+                        <span class="btn-text">Fill & Download ZIP</span>
+                        <div class="loader hidden"></div>
+                    </button>
+
+                    <div id="statusMessage" class="status-message hidden"></div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 AntiGravity Systems</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

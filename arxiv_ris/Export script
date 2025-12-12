@@ -1,0 +1,115 @@
+# save as arxiv_paged_export.py
+import argparse, time, sys
+import datetime as dt
+import requests
+import xml.etree.ElementTree as ET
+
+ARXIV_API = "https://export.arxiv.org/api/query"
+
+def ris_line(tag, v):
+    if not v: return ""
+    v = " ".join(str(v).split())
+    return f"{tag}  - {v}\n"
+
+def to_ris(entry):
+    # entry is an ElementTree <entry>
+    ns = {"a":"http://www.w3.org/2005/Atom", "arxiv":"http://arxiv.org/schemas/atom"}
+    get = lambda p: (entry.find(p, ns).text if entry.find(p, ns) is not None else None)
+
+    L=[]
+    L.append(ris_line("TY","JOUR"))
+    L.append(ris_line("TI", get("a:title")))
+    for a in entry.findall("a:author", ns):
+        name = a.find("a:name", ns).text if a.find("a:name", ns) is not None else None
+        L.append(ris_line("AU", name))
+    pub = get("a:published")
+    if pub:
+        y = pub[:4]
+        try:
+            d = dt.datetime.fromisoformat(pub.replace("Z","+00:00"))
+            L.append(ris_line("PY", y)); L.append(ris_line("Y1", d.strftime("%Y/%m/%d")))
+        except Exception:
+            L.append(ris_line("PY", y))
+    L.append(ris_line("JO","arXiv")); L.append(ris_line("T2","arXiv"))
+    # id and url
+    full_id = get("a:id")
+    short_id = full_id.rsplit("/", 1)[-1] if full_id else None
+    L.append(ris_line("ID", short_id)); L.append(ris_line("UR", full_id))
+    # doi
+    doi = get("arxiv:doi")
+    L.append(ris_line("DO", doi))
+    # abstract
+    L.append(ris_line("AB", get("a:summary")))
+    # categories
+    cats = [c.attrib.get("term") for c in entry.findall("arxiv:primary_category", ns)] + \
+           [c.attrib.get("term") for c in entry.findall("a:category", ns)]
+    for c in cats:
+        if c: L.append(ris_line("KW", c))
+    L.append(ris_line("LA","en"))
+    L.append("ER  - \n")
+    return "".join(L)
+
+def fetch_page(query, start, size, sort="submittedDate", order="descending", tries=3, sleep=3):
+    params = {
+        "search_query": query,
+        "start": start,
+        "max_results": size,
+        "sortBy": sort,
+        "sortOrder": order
+    }
+    for i in range(tries):
+        r = requests.get(ARXIV_API, params=params, timeout=30)
+        if r.status_code == 200 and r.text.strip():
+            # Some editors add BOM; strip just in case.
+            text = r.text.lstrip("\ufeff")
+            return ET.fromstring(text)
+        time.sleep(sleep * (i+1))
+    raise RuntimeError(f"Failed to fetch page starting at {start}")
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--query", help="arXiv query string")
+    ap.add_argument("--query-file", help="file containing query")
+    ap.add_argument("--outfile", default="arxiv_export.ris")
+    ap.add_argument("--limit", type=int, default=3000, help="max total records to fetch")
+    ap.add_argument("--page-size", type=int, default=100, help="page size (10–200)")
+    args = ap.parse_args()
+
+    if not args.query and not args.query_file:
+        print("Provide --query or --query-file", file=sys.stderr); sys.exit(2)
+    q = args.query
+    if args.query_file:
+        q = open(args.query_file, "r", encoding="utf-8").read().lstrip("\ufeff").strip()
+
+    total = 0
+    start = 0
+    out = []
+    seen = set()  # de-dup by id without version
+    while total < args.limit:
+        feed = fetch_page(q, start, args.page_size)
+        entries = feed.findall("{http://www.w3.org/2005/Atom}entry")
+        if not entries:
+            # empty page — advance and continue; arXiv sometimes hiccups
+            start += args.page_size
+            continue
+        got_any = False
+        for e in entries:
+            full_id = e.find("{http://www.w3.org/2005/Atom}id").text
+            key = full_id.rsplit("/",1)[-1].split("v")[0]  # strip version
+            if key in seen: continue
+            seen.add(key)
+            out.append(to_ris(e))
+            total += 1
+            got_any = True
+            if total >= args.limit: break
+        if not got_any:
+            # advance to avoid infinite loop on pathological pages
+            start += args.page_size
+        else:
+            start += args.page_size
+    with open(args.outfile, "w", encoding="utf-8") as f:
+        f.write("".join(out))
+    print(f"Exported {total} unique records to {args.outfile}")
+
+if __name__ == "__main__":
+    main()

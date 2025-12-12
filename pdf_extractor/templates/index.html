@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Data Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="glass-container">
+        <header>
+            <h1>PDF Data Extractor</h1>
+            <p>Unlock the data trapped in your forms. Fast, secure, and beautiful.</p>
+        </header>
+
+        <nav class="main-nav">
+            <a href="/" class="nav-link active">Extractor</a>
+            <a href="/generate-page" class="nav-link">Generator</a>
+            <a href="/direct-fill-page" class="nav-link">Direct Fill</a>
+        </nav>
+
+        <main>
+            <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-content">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="upload-icon">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <h3>Drag & Drop PDFs here</h3>
+                    <p>or <span class="browser-link">browse files</span></p>
+                </div>
+                <input type="file" id="file-input" name="files" multiple accept=".pdf" hidden>
+            </div>
+
+            <div id="file-list" class="file-list"></div>
+
+            <div class="actions">
+                <button id="extract-btn" class="btn primary-btn" disabled>
+                    <span>Extract Data</span>
+                    <div class="loading-spinner hidden"></div>
+                </button>
+            </div>
+
+            <div id="results-area" class="results-area hidden">
+                <div class="results-header">
+                    <h2>Extraction Results</h2>
+                    <button id="download-btn" class="btn secondary-btn">Download CSV</button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="results-table">
+                        <thead>
+                            <!-- Dynamic headers -->
+                        </thead>
+                        <tbody>
+                            <!-- Dynamic rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
