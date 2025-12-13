@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readme | AntiGravity</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .readme-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .readme-content h2 {
+            color: #4f46e5;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .readme-content h3 {
+            color: #4338ca;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.25em;
+        }
+
+        .readme-content ol {
+            padding-left: 20px;
+        }
+
+        .readme-content ul {
+            padding-left: 20px;
+        }
+
+        .readme-content li {
+            margin-bottom: 10px;
+        }
+
+        .readme-content a {
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .readme-content a:hover {
+            text-decoration: underline;
+        }
+
+        .intro-alert {
+            background: #eef2ff;
+            border-left: 4px solid #4f46e5;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <nav class="main-nav">
+            <a href="/readme" class="nav-link active">Readme</a>
+            <a href="/" class="nav-link">Extractor</a>
+            <a href="/generate-page" class="nav-link">Generator</a>
+            <a href="/direct-fill-page" class="nav-link">Direct Fill</a>
+            <a href="/patient-matcher" class="nav-link">Patient Matcher</a>
+        </nav>
+
+        <header>
+            <h1>Application <span class="accent">Instructions</span></h1>
+            <p class="subtitle">How to use the PDF Extractor, Generator, and Matcher tools.</p>
+        </header>
+
+        <main>
+            <div class="readme-content">
+                <div class="intro-alert">
+                    <p><strong>Note:</strong> After a period of inactivity, the website may take one to two minutes to
+                        start up. These applications only work with machine-readable PDFs (e.g. the online GOS-18 form).
+                        They will not work with electronically completed but non-machine-readable PDFs, or with
+                        handwritten forms.</p>
+                </div>
+
+                <ol>
+                    <li>
+                        <strong>Navigate to the App:</strong> You will see tabs corresponding to different applications.
+                    </li>
+                    <li>
+                        <strong>PDF Data Extractor:</strong> If you already have sample PDFs and would like to extract
+                        their fields into a CSV file, use the “PDF Data Extractor” tab.
+                    </li>
+                    <li>
+                        <strong>Handling CSVs in Excel:</strong>
+                        <p>Be aware that although the extracted CSV is initially formatted correctly, Excel will convert
+                            fractions (e.g. 6/6) into dates if the file is edited and saved. To prevent this, follow the
+                            steps below:</p>
+                        <ol type="a">
+                            <li>Open Excel</li>
+                            <li>Go to <strong>Data → From Text/CSV</strong></li>
+                            <li>Select your .csv file</li>
+                            <li>In the preview window:
+                                <ol type="i">
+                                    <li>Click <strong>Transform Data</strong></li>
+                                    <li>Select the six VA columns: <em>PinholeLeft, PinholeRight, Previous corrected VA
+                                            on dateLeft, Previous corrected VA on dateRight, VALeft, VARight</em></li>
+                                    <li>Set <strong>Data Type → Text</strong></li>
+                                    <li>If you intend to use clinical data only (e.g. to match against a separate
+                                        patient dataset), this is a good point to remove columns like: <em>Date of
+                                            Birth, Gender, NHS number, Px Address, Px Forename, Px Post Code, Px
+                                            Surname, Px Telephone, Px Title</em>.</li>
+                                    <li>Click <strong>Close & Load</strong></li>
+                                </ol>
+                            </li>
+                            <li>Save the resulting file as a CSV (not an Excel workbook).</li>
+                        </ol>
+                    </li>
+                    <li>
+                        <strong>PDF Generator:</strong> This application has three upload areas:
+                        <ol type="a">
+                            <li>
+                                <strong>Demographics CSV</strong> – upload a CSV containing patient demographics only.
+                                The column headers must match the field names in the GOS-18 form.
+                                <ul>
+                                    <li>If you are using a different machine-readable PDF, you will need to manually
+                                        update the column headers to match your PDF's fields.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Clinical Details CSV</strong> – upload the clinical data generated using the PDF
+                                Data Extractor.</li>
+                            <li><strong>Template PDF</strong> – upload the PDF template (e.g. the sample GOS-18 form).
+                            </li>
+                            <li>Click <strong>“Generate PDF & Download ZIP”</strong>. The app will generate PDFs with
+                                demographic data randomly merged with clinical data.
+                                <ul>
+                                    <li>Note: In approximately 30% of generated PDFs, fields like NHS number, Gender,
+                                        Address, or Postcode will be randomly missing.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <strong>Direct Fill PDF:</strong> If you already have a single merged CSV containing both
+                        demographic and clinical data, you can use “Direct Fill PDF” instead. Upload your CSV and the
+                        template PDF, and the fields will be auto-filled (again with ~30% missing demographic data logic
+                        applied).
+                    </li>
+                    <li>
+                        <strong>Patient Matcher AI:</strong> If you would prefer to merge the demographic and clinical
+                        CSV files as a separate step before using “Direct Fill PDF”, upload both files to the “Patient
+                        Matcher AI” app. This will generate a merged CSV for you.
+                    </li>
+                </ol>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

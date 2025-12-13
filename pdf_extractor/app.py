@@ -11,6 +11,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/readme')
+def readme():
+    return render_template('readme.html')
+
 @app.route('/patient-matcher')
 def patient_matcher():
     return render_template('patient_matcher.html')
