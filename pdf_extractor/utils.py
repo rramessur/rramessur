@@ -4,6 +4,25 @@ import io
 import zipfile
 from pypdf import PdfReader, PdfWriter
 
+def clean_value(value):
+    """
+    Removes Excel-style escaping (e.g. ='...', "...") and stripping whitespace.
+    """
+    if value is None:
+        return ""
+    
+    val = str(value).strip()
+    
+    # Remove Excel protection like ="value"
+    if val.startswith('="') and val.endswith('"'):
+        val = val[2:-1]
+    
+    # Remove surrounding quotes if present
+    if val.startswith('"') and val.endswith('"'):
+        val = val[1:-1]
+        
+    return val
+
 def parse_csv(file_stream):
     """
     Parses a CSV file stream into a list of dictionaries.
@@ -12,7 +31,17 @@ def parse_csv(file_stream):
         # Decode bytes to string
         text = file_stream.read().decode('utf-8')
         reader = csv.DictReader(io.StringIO(text))
-        return list(reader)
+        
+        # Parse and clean
+        results = []
+        for row in reader:
+            cleaned_row = {
+                k: clean_value(v) 
+                for k, v in row.items()
+            }
+            results.append(cleaned_row)
+            
+        return results
     except Exception as e:
         print(f"Error parsing CSV: {e}")
         return []
@@ -38,18 +67,14 @@ def match_data(demographics, clinical):
 
 def apply_chaos(data_list):
     """
-    Randomly removes fields from 30% of the records.
+    Randomly removes fields from 30% of record.
     Fields to target: NHS number, Gender, Address, Postcode
-    Assumes keys in data match these names roughly or exactly.
-    We'll look for case-insensitive matches for flexibility.
     """
     targets = ['nhs number', 'gender', 'address', 'postcode']
     
     # Calculate how many to affect
     num_to_affect = int(len(data_list) * 0.3)
     if num_to_affect == 0 and len(data_list) > 0:
-         # Ensure at least one is affected if list is small but non-zero, 
-         # or strictly stick to int conversion? Let's stick to int conversion (floor).
          pass
 
     indices = random.sample(range(len(data_list)), num_to_affect)
@@ -71,6 +96,8 @@ def apply_chaos(data_list):
             
     return data_list
 
+from pypdf.generic import NameObject, TextStringObject, BooleanObject
+
 def fill_pdf(template_bytes, data):
     """
     Fills a PDF template with data.
@@ -80,19 +107,156 @@ def fill_pdf(template_bytes, data):
     writer = PdfWriter()
 
     try:
-        # Copy pages and update form fields
         writer.append(reader)
-            
-        # Update fields
-        # Note: update_page_form_field_values is deprecated or complex in newer pypdf
-        # We work with the root writer object
         
-        # Prepare data: values must be strings
-        clean_data = {k: str(v) if v is not None else "" for k, v in data.items()}
+        # 1. Map Field Names to Data.
+        # ... (rest is unchanged)
+        # We need a quick lookup of what values we want to set.
+        # Clean keys to match what we might find in the PDF (simple matching)
+        data_map = {k.lower(): v for k, v in data.items()}
         
-        writer.update_page_form_field_values(
-            writer.pages[0], clean_data#, auto_regenerate=False
-        )
+        # 2. Iterate over all pages and their annotations (Widgets)
+        for page in writer.pages:
+            if '/Annots' not in page:
+                continue
+                
+            for annot in page['/Annots']:
+                obj = annot.get_object()
+                
+                # We are looking for Widget annotations (Interactive Forms)
+                if obj.get('/Subtype') != '/Widget':
+                    continue
+                    
+                # Resolve Field Name
+                # It might be on the object itself or its parent
+                field_name = obj.get('/T')
+                parent = obj.get('/Parent')
+                
+                # If no name, traverse up potentially (simplified here)
+                # Radio groups: Parent has /T (e.g. "Gender"), Kids have no /T usually.
+                active_obj = obj
+                if not field_name and parent:
+                    parent_obj = parent.get_object()
+                    field_name = parent_obj.get('/T')
+                    active_obj = parent_obj
+                    
+                if not field_name:
+                    continue
+                    
+                # Match against our data
+                # Handle standard string/bytes returned by pypdf
+                key = str(field_name).strip()
+                if key.lower() not in data_map:
+                    continue
+                    
+                user_value = data_map[key.lower()]
+                
+                # 3. Determine Field Type and Update Logic
+                # Check FT on widget or parent
+                ft = obj.get('/FT') or active_obj.get('/FT')
+                
+                # === Text Fields ===
+                if ft == '/Tx':
+                    # easy: just set /V
+                    val_str = str(user_value)
+                    active_obj[NameObject('/V')] = TextStringObject(val_str)
+                    
+                    # Also update appearance if possible (simplified: pypdf might need need_appearances flag)
+                    # We often need to reset AP to force regeneration
+                    if '/AP' in obj:
+                        del obj['/AP']
+                        
+                # === Buttons (Checkboxes / Radio) ===
+                elif ft == '/Btn':
+                    # Goal: Set /V on Parent/Field AND /AS on Widget
+                    
+                    # A. Analyze Appearance States for THIS widget
+                    valid_states = set()
+                    ap = obj.get('/AP', {})
+                    if isinstance(ap, dict):
+                        n_ap = ap.get('/N', {})
+                        if isinstance(n_ap, dict):
+                            valid_states.update(n_ap.keys())
+                            
+                    # Remove /Off
+                    on_states = {s for s in valid_states if s != '/Off'}
+                    
+                    # B. Determine Desired State based on user input
+                    target_state = NameObject('/Off')
+                    
+                    val_str = str(user_value).strip()
+                    val_lower = val_str.lower()
+                    
+                    # Direct Match (e.g. CSV "Male" -> matches state "/Male")
+                    match_found = False
+                    for state in on_states:
+                        state_name = state.replace('/', '')
+                        if val_lower == state_name.lower():
+                            target_state = NameObject(state)
+                            match_found = True
+                            break
+                            
+                    # Fuzzy / Generic Match (CSV "Yes" -> matches any on state)
+                    if not match_found and val_lower in ['yes', 'true', '1', 'on', 'checked', 'x']:
+                         if on_states:
+                             # Pick first one (e.g. /Yes, /On, /Male)
+                             # Prefer /Yes or /On if available
+                             best = list(on_states)[0]
+                             for s in on_states:
+                                 if s in ['/Yes', '/On']:
+                                     best = s
+                                     break
+                             target_state = NameObject(best)
+                             match_found = True
+                    
+                    # C. Update Objects
+                    
+                    # Update Widget Appearance (/AS)
+                    # For radio groups, only the selected widget gets the 'On' state.
+                    # Others must be '/Off'.
+                    # We check if THIS widget supports the target state.
+                    if target_state in valid_states:
+                         obj[NameObject('/AS')] = target_state
+                    else:
+                         # This widget doesn't have the target state (so it's a sibling in a radio group)
+                         # Set it to Off
+                         obj[NameObject('/AS')] = NameObject('/Off')
+                    
+                    # Update Field Value (/V) - usually on Parent, but safety first
+                    # Only update /V if we found a "True" match.
+                    # If user mapped "Male", we set V=/Male.
+                    # If user mapped "No", V should be /Off.
+                    if match_found:
+                        active_obj[NameObject('/V')] = target_state
+                    elif target_state == '/Off':
+                        # If we are turning it off, and previously it might have been on...
+                        # But wait, we iterate widgets separate. We should only set V once per Group.
+                        # This iteration is per-widget. Setting V multiple times to same value is fine.
+                        # Setting V to /Off if we didn't match might be wrong if another widget DID match?
+                        # Actually logic: if "Male", V=/Male.
+                        # If "Female" widget comes along, it sees target /Male. It sets AS=/Off. It sets V=/Male. Correct.
+                        active_obj[NameObject('/V')] = target_state
+
+        # Force NeedAppearances so viewers re-render text
+        # (Checkboxes usually rely on /AS so they are fine, but Text needs this usually if we del /AP)
+        if '/AcroForm' not in writer.root_object:
+            writer.root_object.update({
+                NameObject("/AcroForm"): writer._create_object_stream(
+                    {NameObject("/NeedAppearances"): BooleanObject(True)}
+                )
+            })
+        else:
+             af = writer.root_object['/AcroForm']
+             # af could be IndirectObject or DictionaryObject
+             # writer.get_object() expects IndirectObject
+             if hasattr(af, 'pdf'): # Heuristic for IndirectObject which usually has .pdf ref or similar, or just try/except
+                 af_obj = writer.get_object(af)
+             else:
+                 af_obj = af
+                 
+             af_obj.update({
+                 NameObject("/NeedAppearances"): BooleanObject(True)
+             })
 
         output_stream = io.BytesIO()
         writer.write(output_stream)
@@ -100,6 +264,8 @@ def fill_pdf(template_bytes, data):
         
     except Exception as e:
         print(f"Error filling PDF: {e}")
+        import traceback
+        traceback.print_exc()
         return None
 
 def create_zip(pdf_files):

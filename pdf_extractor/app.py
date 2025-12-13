@@ -11,6 +11,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/patient-matcher')
+def patient_matcher():
+    return render_template('patient_matcher.html')
+
 @app.route('/generate-page')
 def generate_page():
     return render_template('generate.html')
@@ -39,6 +43,21 @@ def extract_fields():
                     # Extract value, handling different field types potentially
                     # pypdf fields are complex, we try to get '/V' (Value)
                     value = field_obj.get('/V', '')
+                    
+                    # Checkbox handling: Normalize /Yes to "Yes"
+                    if field_obj.get('/FT') == '/Btn':
+                        val_str = str(value)
+                        if val_str == '/Yes' or val_str == '/On' or val_str == 'Yes' or val_str == 'On':
+                            value = "Yes"
+                        elif val_str == '/Off':
+                             value = "No"
+                        else:
+                             # Fallback: if it looks like a NameObject with a slash, strip it?
+                             # Or just valid truthy check?
+                             if val_str.startswith('/') and len(val_str) > 1:
+                                  # Heuristic: /Value -> Value
+                                  value = val_str[1:]
+                    
                     # Handle some common text cleanup
                     if isinstance(value, str):
                         value = value.strip()
