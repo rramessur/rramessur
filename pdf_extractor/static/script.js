@@ -279,8 +279,22 @@ function initGenerationPage(form) {
             });
 
             if (!response.ok) {
-                const errData = await response.json();
-                throw new Error(errData.error || 'Generation failed');
+                const text = await response.text();
+                let errorMsg = 'Generation failed';
+                try {
+                    const errData = JSON.parse(text);
+                    errorMsg = errData.error || errorMsg;
+                } catch (e) {
+                    // Not JSON, analyze text
+                    if (text.includes('<!DOCTYPE html>')) {
+                        const match = text.match(/<title>(.*?)<\/title>/i);
+                        if (match) errorMsg = `Server Error: ${match[1]}`;
+                        else errorMsg = `Server Error: ${response.status} ${response.statusText}`;
+                    } else {
+                        errorMsg = text.substring(0, 100) || `Server Error: ${response.status}`;
+                    }
+                }
+                throw new Error(errorMsg);
             }
 
             // Handle ZIP download
@@ -358,8 +372,22 @@ function initDirectFillPage(form) {
             });
 
             if (!response.ok) {
-                const errData = await response.json();
-                throw new Error(errData.error || 'Fill failed');
+                const text = await response.text();
+                let errorMsg = 'Fill failed';
+                try {
+                    const errData = JSON.parse(text);
+                    errorMsg = errData.error || errorMsg;
+                } catch (e) {
+                    // Not JSON, analyze text
+                    if (text.includes('<!DOCTYPE html>')) {
+                        const match = text.match(/<title>(.*?)<\/title>/i);
+                        if (match) errorMsg = `Server Error: ${match[1]}`;
+                        else errorMsg = `Server Error: ${response.status} ${response.statusText}`;
+                    } else {
+                        errorMsg = text.substring(0, 100) || `Server Error: ${response.status}`;
+                    }
+                }
+                throw new Error(errorMsg);
             }
 
             // Handle ZIP download
