@@ -101,6 +101,10 @@ def generate_pdfs():
         # Match data
         matched_data = match_data(demographics, clinical)
         
+        # LIMIT: Render usage to prevent timeouts
+        if len(matched_data) > 20:
+             return jsonify({'error': f"Too many records ({len(matched_data)}). Please use the provided Auto-Batching on the website or split your CSV into files of 20 rows or less."}), 400
+
         # Apply chaos (30% missing fields)
         final_data = apply_chaos(matched_data)
         
@@ -158,6 +162,10 @@ def direct_fill():
         if not data_rows:
              return jsonify({'error': 'Could not parse CSV file'}), 400
              
+        # LIMIT: Render usage to prevent timeouts
+        if len(data_rows) > 20:
+             return jsonify({'error': f"Too many records ({len(data_rows)}). Please use the provided Auto-Batching on the website or split your CSV into files of 20 rows or less."}), 400
+
         # Read template
         template_bytes = template_file.read()
         

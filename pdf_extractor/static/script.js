@@ -263,52 +263,96 @@ function initGenerationPage(form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        const demographicsFile = document.getElementById('demographics').files[0];
+        const clinicalFile = document.getElementById('clinical').files[0];
+        const templateFile = document.getElementById('template').files[0];
+
+        if (!demographicsFile || !clinicalFile || !templateFile) {
+            showStatus('Please select all files.', 'error');
+            return;
+        }
+
         // Reset UI
         generateBtn.disabled = true;
-        btnText.textContent = 'Generating...';
+        btnText.textContent = 'Processing (Auto-Batching)...';
         loader.classList.remove('hidden');
         statusMsg.classList.add('hidden');
-        statusMsg.className = 'status-message hidden'; // remove success/error classes
-
-        const formData = new FormData(form);
+        statusMsg.className = 'status-message hidden';
 
         try {
-            const response = await fetch('/generate', {
-                method: 'POST',
-                body: formData
-            });
+            // 1. Parse CSVs
+            const demoData = await parseCSV(demographicsFile);
+            const clinData = await parseCSV(clinicalFile);
 
-            if (!response.ok) {
-                const text = await response.text();
-                let errorMsg = 'Generation failed';
-                try {
-                    const errData = JSON.parse(text);
-                    errorMsg = errData.error || errorMsg;
-                } catch (e) {
-                    // Not JSON, analyze text
-                    if (text.includes('<!DOCTYPE html>')) {
-                        const match = text.match(/<title>(.*?)<\/title>/i);
-                        if (match) errorMsg = `Server Error: ${match[1]}`;
-                        else errorMsg = `Server Error: ${response.status} ${response.statusText}`;
-                    } else {
-                        errorMsg = text.substring(0, 100) || `Server Error: ${response.status}`;
-                    }
+            // 2. Determine batch size (safe limit: 10)
+            const BATCH_SIZE = 10;
+            const totalRows = Math.max(demoData.length, clinData.length);
+            const chunks = Math.ceil(totalRows / BATCH_SIZE);
+
+            const zip = new JSZip();
+            let processedCount = 0;
+
+            showStatus(`Starting... Processing ${totalRows} patients in ${chunks} batches.`, 'info');
+
+            // 3. Process batches
+            for (let i = 0; i < totalRows; i += BATCH_SIZE) {
+                const chunkIndex = Math.floor(i / BATCH_SIZE) + 1;
+                btnText.textContent = `Batch ${chunkIndex}/${chunks}...`;
+
+                // Slice data
+                const demoChunk = demoData.slice(i, i + BATCH_SIZE);
+                const clinChunk = clinData.slice(i, i + BATCH_SIZE); // Assuming aligned or random-per-chunk is fine
+
+                if (demoChunk.length === 0) break;
+
+                // Create mini-CSVs
+                const demoCSV = Papa.unparse(demoChunk);
+                const clinCSV = Papa.unparse(clinChunk);
+
+                // Create FormData
+                const batchFormData = new FormData();
+                batchFormData.append('demographics', new File([demoCSV], 'demo_batch.csv', { type: 'text/csv' }));
+                batchFormData.append('clinical', new File([clinCSV], 'clin_batch.csv', { type: 'text/csv' }));
+                batchFormData.append('template', templateFile);
+
+                // Fetch
+                const response = await fetch('/generate', { method: 'POST', body: batchFormData });
+
+                if (!response.ok) {
+                    const text = await response.text();
+                    let errParams = `Batch ${chunkIndex} Failed: `;
+                    try { errParams += JSON.parse(text).error; }
+                    catch { errParams += text.substring(0, 50); }
+                    throw new Error(errParams);
                 }
-                throw new Error(errorMsg);
+
+                // Unzip result to master zip
+                const blob = await response.blob();
+                const chunkZip = await JSZip.loadAsync(blob);
+
+                chunkZip.forEach((relativePath, zipEntry) => {
+                    zip.file(zipEntry.name, zipEntry._data);
+                });
+
+                processedCount += demoChunk.length;
             }
 
-            // Handle ZIP download
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
+            // 4. Generate Master ZIP
+            if (processedCount === 0) throw new Error('No data processed');
+
+            btnText.textContent = 'Zipping...';
+            const content = await zip.generateAsync({ type: "blob" });
+
+            const url = window.URL.createObjectURL(content);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'generated_patients.zip';
+            a.download = 'generated_patients_batched.zip';
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
             a.remove();
 
-            showStatus('Successfully generated and downloaded ZIP!', 'success');
+            showStatus(`Success! Generated ${processedCount} PDFs.`, 'success');
 
         } catch (error) {
             console.error('Generation Error:', error);
@@ -319,6 +363,17 @@ function initGenerationPage(form) {
             loader.classList.add('hidden');
         }
     });
+
+    const parseCSV = (file) => {
+        return new Promise((resolve, reject) => {
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                complete: (results) => resolve(results.data),
+                error: (err) => reject(err)
+            });
+        });
+    };
 
     function showStatus(msg, type) {
         statusMsg.textContent = msg;
@@ -356,52 +411,90 @@ function initDirectFillPage(form) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        const csvFile = document.getElementById('csv_file').files[0];
+        const templateFile = document.getElementById('template').files[0];
+
+        if (!csvFile || !templateFile) {
+            showStatus('Please select all files.', 'error');
+            return;
+        }
+
         // Reset UI
         generateBtn.disabled = true;
-        btnText.textContent = 'Processing...';
+        btnText.textContent = 'Processing (Auto-Batching)...';
         loader.classList.remove('hidden');
         statusMsg.classList.add('hidden');
         statusMsg.className = 'status-message hidden';
 
-        const formData = new FormData(form);
-
         try {
-            const response = await fetch('/direct-fill', {
-                method: 'POST',
-                body: formData
-            });
+            // 1. Parse CSV
+            const csvData = await parseCSV(csvFile);
 
-            if (!response.ok) {
-                const text = await response.text();
-                let errorMsg = 'Fill failed';
-                try {
-                    const errData = JSON.parse(text);
-                    errorMsg = errData.error || errorMsg;
-                } catch (e) {
-                    // Not JSON, analyze text
-                    if (text.includes('<!DOCTYPE html>')) {
-                        const match = text.match(/<title>(.*?)<\/title>/i);
-                        if (match) errorMsg = `Server Error: ${match[1]}`;
-                        else errorMsg = `Server Error: ${response.status} ${response.statusText}`;
-                    } else {
-                        errorMsg = text.substring(0, 100) || `Server Error: ${response.status}`;
-                    }
+            // 2. Determine batch size
+            const BATCH_SIZE = 10;
+            const totalRows = csvData.length;
+            const chunks = Math.ceil(totalRows / BATCH_SIZE);
+
+            const zip = new JSZip();
+            let processedCount = 0;
+
+            showStatus(`Starting... Processing ${totalRows} rows in ${chunks} batches.`, 'info');
+
+            // 3. Process batches
+            for (let i = 0; i < totalRows; i += BATCH_SIZE) {
+                const chunkIndex = Math.floor(i / BATCH_SIZE) + 1;
+                btnText.textContent = `Batch ${chunkIndex}/${chunks}...`;
+
+                // Slice data
+                const chunk = csvData.slice(i, i + BATCH_SIZE);
+                if (chunk.length === 0) break;
+
+                // Create mini-CSV
+                const chunkCSV = Papa.unparse(chunk);
+
+                // Create FormData
+                const batchFormData = new FormData();
+                batchFormData.append('csv_file', new File([chunkCSV], 'batch.csv', { type: 'text/csv' }));
+                batchFormData.append('template', templateFile);
+
+                // Fetch
+                const response = await fetch('/direct-fill', { method: 'POST', body: batchFormData });
+
+                if (!response.ok) {
+                    const text = await response.text();
+                    let errParams = `Batch ${chunkIndex} Failed: `;
+                    try { errParams += JSON.parse(text).error; }
+                    catch { errParams += text.substring(0, 50); }
+                    throw new Error(errParams);
                 }
-                throw new Error(errorMsg);
+
+                // Unzip result to master zip
+                const blob = await response.blob();
+                const chunkZip = await JSZip.loadAsync(blob);
+
+                chunkZip.forEach((relativePath, zipEntry) => {
+                    zip.file(zipEntry.name, zipEntry._data);
+                });
+
+                processedCount += chunk.length;
             }
 
-            // Handle ZIP download
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
+            // 4. Generate Master ZIP
+            if (processedCount === 0) throw new Error('No data processed');
+
+            btnText.textContent = 'Zipping...';
+            const content = await zip.generateAsync({ type: "blob" });
+
+            const url = window.URL.createObjectURL(content);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'filled_forms.zip';
+            a.download = 'filled_forms_batched.zip';
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
             a.remove();
 
-            showStatus('Successfully filled and downloaded ZIP!', 'success');
+            showStatus(`Success! Generated ${processedCount} PDFs.`, 'success');
 
         } catch (error) {
             console.error('Fill Error:', error);
@@ -412,6 +505,17 @@ function initDirectFillPage(form) {
             loader.classList.add('hidden');
         }
     });
+
+    const parseCSV = (file) => {
+        return new Promise((resolve, reject) => {
+            Papa.parse(file, {
+                header: true,
+                skipEmptyLines: true,
+                complete: (results) => resolve(results.data),
+                error: (err) => reject(err)
+            });
+        });
+    };
 
     function showStatus(msg, type) {
         statusMsg.textContent = msg;
