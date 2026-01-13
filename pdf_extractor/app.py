@@ -132,9 +132,16 @@ def generate_pdfs():
             download_name='generated_patients.zip'
         )
         
+import traceback
+
+# ... (imports remain)
+
+# ... (inside /generate)
     except Exception as e:
         app.logger.error(f"Generation error: {e}")
-        return jsonify({'error': str(e)}), 500
+        tb = traceback.format_exc()
+        print(tb) # Log to console for Render logs
+        return jsonify({'error': f"Generation Error: {str(e)}", 'details': tb}), 500
 
 @app.route('/direct-fill-page')
 def direct_fill_page():
@@ -192,7 +199,9 @@ def direct_fill():
         
     except Exception as e:
         app.logger.error(f"Direct fill error: {e}")
-        return jsonify({'error': str(e)}), 500
+        tb = traceback.format_exc()
+        print(tb)
+        return jsonify({'error': f"Fill Error: {str(e)}", 'details': tb}), 500
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
