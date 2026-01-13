@@ -1,6 +1,7 @@
 import os
 import io
 import csv
+import traceback
 from flask import Flask, render_template, request, jsonify, Response, send_file
 from pypdf import PdfReader
 from utils import parse_csv, match_data, apply_chaos, fill_pdf, create_zip
@@ -132,11 +133,6 @@ def generate_pdfs():
             download_name='generated_patients.zip'
         )
         
-import traceback
-
-# ... (imports remain)
-
-# ... (inside /generate)
     except Exception as e:
         app.logger.error(f"Generation error: {e}")
         tb = traceback.format_exc()
