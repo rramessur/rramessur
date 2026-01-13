@@ -330,9 +330,29 @@ function initGenerationPage(form) {
                 const blob = await response.blob();
                 const chunkZip = await JSZip.loadAsync(blob);
 
+                const promises = [];
                 chunkZip.forEach((relativePath, zipEntry) => {
-                    zip.file(zipEntry.name, zipEntry._data);
+                    const promise = zipEntry.async('arraybuffer').then(content => {
+                        let fileName = zipEntry.name;
+                        // Prevent overwrites if name exists (e.g. filled_1.pdf from multiple batches)
+                        let counter = 1;
+                        while (zip.file(fileName)) {
+                            // Insert suffix before extension
+                            if (fileName.includes('.')) {
+                                const parts = fileName.split('.');
+                                const ext = parts.pop();
+                                const base = parts.join('.');
+                                fileName = `${base}_${chunkIndex}_${counter}.${ext}`;
+                            } else {
+                                fileName = `${fileName}_${chunkIndex}_${counter}`;
+                            }
+                            counter++;
+                        }
+                        zip.file(fileName, content);
+                    });
+                    promises.push(promise);
                 });
+                await Promise.all(promises);
 
                 processedCount += demoChunk.length;
             }
@@ -472,9 +492,28 @@ function initDirectFillPage(form) {
                 const blob = await response.blob();
                 const chunkZip = await JSZip.loadAsync(blob);
 
+                const promises = [];
                 chunkZip.forEach((relativePath, zipEntry) => {
-                    zip.file(zipEntry.name, zipEntry._data);
+                    const promise = zipEntry.async('arraybuffer').then(content => {
+                        let fileName = zipEntry.name;
+                        // Prevent overwrites
+                        let counter = 1;
+                        while (zip.file(fileName)) {
+                            if (fileName.includes('.')) {
+                                const parts = fileName.split('.');
+                                const ext = parts.pop();
+                                const base = parts.join('.');
+                                fileName = `${base}_${chunkIndex}_${counter}.${ext}`;
+                            } else {
+                                fileName = `${fileName}_${chunkIndex}_${counter}`;
+                            }
+                            counter++;
+                        }
+                        zip.file(fileName, content);
+                    });
+                    promises.push(promise);
                 });
+                await Promise.all(promises);
 
                 processedCount += chunk.length;
             }
