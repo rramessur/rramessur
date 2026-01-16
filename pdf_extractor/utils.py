@@ -237,6 +237,23 @@ def fill_pdf(template_bytes, data):
                         # If "Female" widget comes along, it sees target /Male. It sets AS=/Off. It sets V=/Male. Correct.
                         active_obj[NameObject('/V')] = target_state
 
+                # === Choice Fields (Dropdowns / Listboxes) ===
+                elif ft == '/Ch':
+                    # Just like Text, but value must (usually) be one of the options.
+                    # We will trust the user value, but we could validate against /Opt if needed.
+                    val_str = str(user_value)
+                    
+                    # Set value
+                    active_obj[NameObject('/V')] = TextStringObject(val_str)
+                    
+                    # For combo boxes with editing enabled, this is enough.
+                    # For strict lists, if val_str isn't in /Opt, it might not show.
+                    # We assume user inputs valid data or 'custom' text is allowed if 'Edit' flag is on.
+                    
+                    # Reset appearance to force regeneration by viewer
+                    if '/AP' in obj:
+                        del obj['/AP']
+
         # Force NeedAppearances so viewers re-render text
         # (Checkboxes usually rely on /AS so they are fine, but Text needs this usually if we del /AP)
         if '/AcroForm' not in writer.root_object:
