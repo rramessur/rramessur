@@ -189,9 +189,27 @@ def fill_pdf(template_bytes, data):
                     
                     # Direct Match (e.g. CSV "Male" -> matches state "/Male")
                     match_found = False
+                    
+                    # Helper to normalize string (remove non-alphanumeric, lowercase)
+                    def normalize(s):
+                        import re
+                        return re.sub(r'[^a-z0-9]', '', str(s).lower())
+
+                    val_norm = normalize(user_value)
+                    
                     for state in on_states:
                         state_name = state.replace('/', '')
-                        if val_lower == state_name.lower():
+                        state_norm = normalize(state_name)
+                        
+                        # 1. Exact Normal Match (Handles "Child - Strab" == "Child-Strab")
+                        if val_norm == state_norm:
+                            target_state = NameObject(state)
+                            match_found = True
+                            break
+                            
+                        # 2. Contains Match (Handles "Female" in "Female Patient", or "Oculoplastics" in "Oculoplastics / Orbits")
+                        # Use strictly state in value (PDF option is usually the substring)
+                        if len(state_norm) > 3 and state_norm in val_norm:
                             target_state = NameObject(state)
                             match_found = True
                             break
@@ -212,9 +230,6 @@ def fill_pdf(template_bytes, data):
                     # C. Update Objects
                     
                     # Update Widget Appearance (/AS)
-                    # For radio groups, only the selected widget gets the 'On' state.
-                    # Others must be '/Off'.
-                    # We check if THIS widget supports the target state.
                     if target_state in valid_states:
                          obj[NameObject('/AS')] = target_state
                     else:
@@ -222,20 +237,12 @@ def fill_pdf(template_bytes, data):
                          # Set it to Off
                          obj[NameObject('/AS')] = NameObject('/Off')
                     
-                    # Update Field Value (/V) - usually on Parent, but safety first
-                    # Only update /V if we found a "True" match.
-                    # If user mapped "Male", we set V=/Male.
-                    # If user mapped "No", V should be /Off.
+                    # Update Field Value (/V) - usually on Parent
+                    # CRITICAL FIX: Only set V if we found a POSITIVE match.
+                    # Do not overwrite V with /Off just because *this specific widget* isn't the one enabled.
+                    # In a radio group, 14 widgets are Off, 1 is On. We don't want the 14 Offs to erase the 1 On.
                     if match_found:
-                        active_obj[NameObject('/V')] = target_state
-                    elif target_state == '/Off':
-                        # If we are turning it off, and previously it might have been on...
-                        # But wait, we iterate widgets separate. We should only set V once per Group.
-                        # This iteration is per-widget. Setting V multiple times to same value is fine.
-                        # Setting V to /Off if we didn't match might be wrong if another widget DID match?
-                        # Actually logic: if "Male", V=/Male.
-                        # If "Female" widget comes along, it sees target /Male. It sets AS=/Off. It sets V=/Male. Correct.
-                        active_obj[NameObject('/V')] = target_state
+                         active_obj[NameObject('/V')] = target_state
 
                 # === Choice Fields (Dropdowns / Listboxes) ===
                 elif ft == '/Ch':
