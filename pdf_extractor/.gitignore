@@ -1,15 +1,23 @@
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
+
+# Environments
 .env
 .venv
 env/
 venv/
-instance/
-.pytest_cache/
-.coverage
-htmlcov/
-dist/
-build/
-*.egg-info/
+ENV/
+
+# Data
+data/
+api_keys/
+*.csv
+*.xlsx
+*.log
+debug_output.txt
+
+# OS
+.DS_Store
+Thumbs.db

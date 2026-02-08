@@ -9,8 +9,9 @@ class TestDirectFill(unittest.TestCase):
         self.app.testing = True
 
     def test_direct_fill_success(self):
-        # Prepare mock files
-        with open('test_direct_fill.csv', 'rb') as f:
+        # Load CSV from data directory
+        csv_path = 'data/test_direct_fill.csv'
+        with open(csv_path, 'rb') as f:
             csv_content = f.read()
         
         with open('test_form.pdf', 'rb') as f:

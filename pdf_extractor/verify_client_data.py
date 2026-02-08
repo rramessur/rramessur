@@ -87,4 +87,4 @@ def verify_fill(csv_path, pdf_path):
                  print("  SUCCESS: Gender appears set.")
 
 if __name__ == "__main__":
-    verify_fill("Cally referrals for generation_clinic_codes_correct.csv", "gos_test_form.pdf")
+    verify_fill("data/Cally referrals for generation_clinic_codes_correct.csv", "gos_test_form.pdf")
