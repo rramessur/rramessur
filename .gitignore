@@ -1,2 +1,27 @@
-api_keys
-api_keys/bioportal.txt
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# JavaScript / Node
+node_modules/
+npm-debug.log
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Data (Matches data/ folder in any subdirectory or root)
+data/
+api_keys/
+*.csv
+*.xlsx
+*.log
+debug_output.txt
+
+# OS
+.DS_Store
+Thumbs.db
